@@ -1,0 +1,3334 @@
+<!DOCTYPE html><html><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;"><meta http-equiv="x-dns-prefetch-control" content="off"><script src="https://puc.poecdn.net/authenticated_preview_page/standard.3ef2c256959faf5a756d.js"></script>
+    <meta charset="utf-8">
+    <title>Poe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://puc.poecdn.net/authenticated_preview_page/disableWebRTC.9710cebe07429a9e8e06.js"></script><meta name="x-poe-allow-downloads" content="true"><meta name="x-poe-datastore-behavior" content="disabled"><script src="https://puc.poecdn.net/authenticated_preview_page/tw.b9024aecac666455e183.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/deps.faccd16000d314dc16d5.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/exports.b0f0f482cdeb5302b0b9.js"></script><script src="https://puc.poecdn.net/authenticated_preview_page/renderer.75c73ae6b4235f62945a.js"></script><script>Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }var _react = require('react'); var _react2 = _interopRequireDefault(_react);
+var _lucidereact = require('lucide-react');
+
+const DSCMDocumentation = () => {
+  const [activeSection, setActiveSection] = _react.useState.call(void 0, 'overview');
+  const [expandedSections, setExpandedSections] = _react.useState.call(void 0, {
+    part1: true, part2: true, part3: true, part4: true, 
+    part5: true, part6: true, part7: true, part8: true, 
+    part9: true, part10: true, part11: true
+  });
+  const [copiedCode, setCopiedCode] = _react.useState.call(void 0, null);
+  const [sidebarOpen, setSidebarOpen] = _react.useState.call(void 0, false);
+
+  const copyCode = (code, id) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(id);
+    setTimeout(() => setCopiedCode(null), 2000);
+  };
+
+  const docStructure = [
+    { id: 'part1', title: '第一部分：系统概述', icon: _react2.default.createElement(_lucidereact.BookOpen, { size: 14,} ), children: [
+      { id: 'overview', title: '1.1 系统简介' },
+      { id: 'architecture', title: '1.2 系统架构' },
+      { id: 'data-flow', title: '1.3 数据流转' },
+      { id: 'glossary', title: '1.4 术语表' }
+    ]},
+    { id: 'part2', title: '第二部分：类型系统', icon: _react2.default.createElement(_lucidereact.Code, { size: 14,} ), children: [
+      { id: 'base-types', title: '2.1 基础类型' },
+      { id: 'enum-types', title: '2.2 枚举类型' },
+      { id: 'context-types', title: '2.3 上下文类型' },
+      { id: 'domain-types', title: '2.4 领域模型' },
+      { id: 'result-types', title: '2.5 结果类型' }
+    ]},
+    { id: 'part3', title: '第三部分：Coordinator', icon: _react2.default.createElement(_lucidereact.Cpu, { size: 14,} ), children: [
+      { id: 'coordinator', title: '3.1 职责概述' },
+      { id: 'coord-context', title: '3.2 Context创建' },
+      { id: 'coord-validation', title: '3.3 校验规则' },
+      { id: 'coord-lifecycle', title: '3.4 生命周期' }
+    ]},
+    { id: 'part4', title: '第四部分：EventRouter', icon: _react2.default.createElement(_lucidereact.GitBranch, { size: 14,} ), children: [
+      { id: 'router', title: '4.1 事件路由' },
+      { id: 'idempotency', title: '4.2 幂等机制' },
+      { id: 'circuit', title: '4.3 熔断器' },
+      { id: 'retry', title: '4.4 重试策略' }
+    ]},
+    { id: 'part5', title: '第五部分：DegradationService', icon: _react2.default.createElement(_lucidereact.Shield, { size: 14,} ), children: [
+      { id: 'degrade-overview', title: '5.1 服务概述' },
+      { id: 'degrade-interface', title: '5.2 接口定义' },
+      { id: 'degrade-policy', title: '5.3 降级策略' },
+      { id: 'degrade-usage', title: '5.4 使用规范' }
+    ]},
+    { id: 'part6', title: '第六部分：ScenarioAgent', icon: _react2.default.createElement(_lucidereact.Layers, { size: 14,} ), children: [
+      { id: 'scenario-overview', title: '6.1 场景识别' },
+      { id: 'scenario-types', title: '6.2 场景类型' },
+      { id: 'scenario-signals', title: '6.3 信号融合' }
+    ]},
+    { id: 'part7', title: '第七部分：DemandAgent', icon: _react2.default.createElement(_lucidereact.TrendingUp, { size: 14,} ), children: [
+      { id: 'demand-overview', title: '7.1 需求预测' },
+      { id: 'demand-decomp', title: '7.2 需求拆解' },
+      { id: 'demand-promo', title: '7.3 促销处理' },
+      { id: 'demand-model', title: '7.4 模型选择' }
+    ]},
+    { id: 'part8', title: '第八部分：PricingAgent', icon: _react2.default.createElement(_lucidereact.DollarSign, { size: 14,} ), children: [
+      { id: 'pricing-overview', title: '8.1 定价概述' },
+      { id: 'pricing-strategy', title: '8.2 定价策略' },
+      { id: 'pricing-margin', title: '8.3 毛利控制' }
+    ]},
+    { id: 'part9', title: '第九部分：OrderBuilder', icon: _react2.default.createElement(_lucidereact.Package, { size: 14,} ), children: [
+      { id: 'order-overview', title: '9.1 订单生成' },
+      { id: 'order-dos', title: '9.2 动态DOS' },
+      { id: 'order-constraint', title: '9.3 约束处理' },
+      { id: 'order-guard', title: '9.4 数据守卫' },
+      { id: 'order-budget', title: '9.5 预算控制' }
+    ]},
+    { id: 'part10', title: '第十部分：配置体系', icon: _react2.default.createElement(_lucidereact.Settings, { size: 14,} ), children: [
+      { id: 'config-global', title: '10.1 全局配置' },
+      { id: 'config-agent', title: '10.2 Agent配置' },
+      { id: 'config-business', title: '10.3 业务配置' }
+    ]},
+    { id: 'part11', title: '第十一部分：API与运维', icon: _react2.default.createElement(_lucidereact.Terminal, { size: 14,} ), children: [
+      { id: 'api-spec', title: '11.1 API规范' },
+      { id: 'api-errors', title: '11.2 错误码' },
+      { id: 'monitor', title: '11.3 监控指标' },
+      { id: 'alerts', title: '11.4 告警规则' },
+      { id: 'best-practices', title: '11.5 最佳实践' }
+    ]}
+  ];
+
+  const CodeBlock = ({ code, id, title }) => (
+    _react2.default.createElement('div', { className: "relative my-4 group"  ,}
+      , title && _react2.default.createElement('div', { className: "bg-gray-800 px-4 py-2 text-sm text-gray-400 border border-b-0 border-gray-700 rounded-t-lg"        ,}, title)
+      , _react2.default.createElement('button', { onClick: () => copyCode(code, id), className: "absolute right-2 top-2 p-2 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"          ,}
+        , copiedCode === id ? _react2.default.createElement(_lucidereact.Check, { size: 14, className: "text-green-400",} ) : _react2.default.createElement(_lucidereact.Copy, { size: 14,} )
+      )
+      , _react2.default.createElement('pre', { className: `bg-gray-950 border border-gray-700 p-4 overflow-x-auto text-sm ${title ? 'rounded-b-lg' : 'rounded-lg'}`,}
+        , _react2.default.createElement('code', { className: "text-gray-300 font-mono whitespace-pre"  ,}, code)
+      )
+    )
+  );
+
+  const Alert = ({ type, title, children }) => {
+    const styles = {
+      info: { border: 'border-blue-500', bg: 'bg-blue-900/30', icon: _react2.default.createElement(_lucidereact.Info, { size: 16, className: "text-blue-400",} ) },
+      warning: { border: 'border-yellow-500', bg: 'bg-yellow-900/30', icon: _react2.default.createElement(_lucidereact.AlertTriangle, { size: 16, className: "text-yellow-400",} ) },
+      error: { border: 'border-red-500', bg: 'bg-red-900/30', icon: _react2.default.createElement(_lucidereact.AlertCircle, { size: 16, className: "text-red-400",} ) },
+      success: { border: 'border-green-500', bg: 'bg-green-900/30', icon: _react2.default.createElement(_lucidereact.CheckCircle, { size: 16, className: "text-green-400",} ) }
+    };
+    const s = styles[type] || styles.info;
+    return (
+      _react2.default.createElement('div', { className: `border-l-4 ${s.border} ${s.bg} rounded-r-lg p-4 my-4`,}
+        , _react2.default.createElement('div', { className: "flex items-center gap-2 font-semibold mb-2"    ,}, s.icon, title)
+        , _react2.default.createElement('div', { className: "text-sm opacity-90" ,}, children)
+      )
+    );
+  };
+
+  const Table = ({ headers, rows }) => (
+    _react2.default.createElement('div', { className: "overflow-x-auto my-4" ,}
+      , _react2.default.createElement('table', { className: "w-full text-sm border border-gray-700 rounded-lg overflow-hidden"     ,}
+        , _react2.default.createElement('thead', { className: "bg-gray-800",}
+          , _react2.default.createElement('tr', null, headers.map((h, i) => _react2.default.createElement('th', { key: i, className: "px-4 py-3 text-left border-b border-gray-700 font-semibold"     ,}, h)))
+        )
+        , _react2.default.createElement('tbody', null
+          , rows.map((row, i) => (
+            _react2.default.createElement('tr', { key: i, className: "border-b border-gray-700 hover:bg-gray-800/50"  ,}
+              , row.map((cell, j) => _react2.default.createElement('td', { key: j, className: "px-4 py-3" ,}, cell))
+            )
+          ))
+        )
+      )
+    )
+  );
+
+  const Section = ({ title, children }) => (
+    _react2.default.createElement('div', { className: "mb-8",}
+      , _react2.default.createElement('h2', { className: "text-xl font-bold text-cyan-400 mb-4 flex items-center gap-2"      ,}
+        , _react2.default.createElement('div', { className: "w-1 h-6 bg-cyan-400 rounded"   ,})
+        , title
+      )
+      , children
+    )
+  );
+
+  const renderOverview = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4 flex items-center gap-3"       ,}
+        , _react2.default.createElement(_lucidereact.Server, { className: "text-cyan-400",} ), "1.1 系统简介"
+
+      )
+
+      , _react2.default.createElement('div', { className: "bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-700/50 rounded-xl p-6"      ,}
+        , _react2.default.createElement('h2', { className: "text-2xl font-bold mb-2"  ,}, "DSCM AI Agent System"   )
+        , _react2.default.createElement('p', { className: "text-gray-300 text-lg" ,}, "Dynamic Store Category Management - 动态门店品类管理智能决策系统"     )
+        , _react2.default.createElement('div', { className: "flex flex-wrap gap-4 mt-4"   ,}
+          , _react2.default.createElement('span', { className: "px-3 py-1 bg-cyan-600 rounded-lg font-bold"    ,}, "v6.4")
+          , _react2.default.createElement('span', { className: "px-3 py-1 bg-gray-700 rounded-lg"   ,}, "Schema: 1.2" )
+          , _react2.default.createElement('span', { className: "px-3 py-1 bg-gray-700 rounded-lg"   ,}, "2026-01-07")
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "系统定位",}
+        , _react2.default.createElement('p', { className: "text-gray-300 leading-relaxed" ,}, "DSCM 是一套面向零售门店的智能决策系统，通过多 Agent 协作架构实现选品、定价、库存、陈列的端到端自动化决策。 系统采用事件驱动架构，支持实时响应市场变化，并通过统一的降级服务保证系统高可用性。"
+
+
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "核心能力矩阵",}
+        , _react2.default.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"    ,}
+          , [
+            { icon: _react2.default.createElement(_lucidereact.Package, { size: 24,} ), title: '智能选品', desc: '基于空间容量、销售表现、SKU角色的动态选品决策', color: 'from-blue-600 to-cyan-600' },
+            { icon: _react2.default.createElement(_lucidereact.DollarSign, { size: 24,} ), title: '动态定价', desc: '考虑竞品价格、目标毛利、SKU角色的智能定价策略', color: 'from-green-600 to-emerald-600' },
+            { icon: _react2.default.createElement(_lucidereact.TrendingUp, { size: 24,} ), title: '需求预测', desc: '融合历史销量、促销计划、外部事件的多维预测', color: 'from-purple-600 to-pink-600' },
+            { icon: _react2.default.createElement(_lucidereact.Box, { size: 24,} ), title: '库存优化', desc: '基于需求预测的动态DOS管理与智能补货', color: 'from-orange-600 to-red-600' },
+            { icon: _react2.default.createElement(_lucidereact.Shield, { size: 24,} ), title: '容错降级', desc: '统一降级服务、熔断机制、多级容错策略', color: 'from-yellow-600 to-amber-600' },
+            { icon: _react2.default.createElement(_lucidereact.Activity, { size: 24,} ), title: '可观测性', desc: '全链路追踪、实时监控、智能告警', color: 'from-indigo-600 to-violet-600' }
+          ].map((item, i) => (
+            _react2.default.createElement('div', { key: i, className: "bg-gray-800 border border-gray-700 rounded-xl p-5 hover:border-gray-600 transition-colors"      ,}
+              , _react2.default.createElement('div', { className: `w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-4`,}
+                , item.icon
+              )
+              , _react2.default.createElement('h3', { className: "font-semibold text-lg mb-2"  ,}, item.title)
+              , _react2.default.createElement('p', { className: "text-gray-400 text-sm" ,}, item.desc)
+            )
+          ))
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "设计原则",}
+        , _react2.default.createElement('div', { className: "space-y-3",}
+          , [
+            { title: '单一时间源', desc: '批次内所有Agent必须使用同一个logicalTime，确保数据一致性' },
+            { title: '统一降级入口', desc: '所有外部数据访问必须通过DegradationService，禁止绕过' },
+            { title: '幂等性保证', desc: '相同输入产生相同输出，支持安全重试' },
+            { title: '渐进式降级', desc: 'OK → WARN → FALLBACK → REJECT，尽可能保持服务可用' },
+            { title: '置信度透明', desc: '每个决策都携带置信度评分和降级原因，便于追溯' }
+          ].map((item, i) => (
+            _react2.default.createElement('div', { key: i, className: "flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg"     ,}
+              , _react2.default.createElement(_lucidereact.CheckCircle, { size: 18, className: "text-green-400 mt-0.5 flex-shrink-0"  ,} )
+              , _react2.default.createElement('div', null
+                , _react2.default.createElement('span', { className: "font-semibold text-cyan-400" ,}, item.title, "：")
+                , _react2.default.createElement('span', { className: "text-gray-300",}, item.desc)
+              )
+            )
+          ))
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "技术栈",}
+        , _react2.default.createElement(Table, { 
+          headers: ['层级', '技术选型', '说明'],
+          rows: [
+            ['运行时', 'Node.js 20+ / TypeScript 5.x', '类型安全、高性能'],
+            ['消息队列', 'Kafka / RabbitMQ', '事件驱动架构'],
+            ['缓存', 'Redis Cluster', '幂等键存储、熔断状态'],
+            ['数据库', 'PostgreSQL + TimescaleDB', '业务数据 + 时序数据'],
+            ['监控', 'Prometheus + Grafana', '指标采集与可视化'],
+            ['追踪', 'OpenTelemetry + Jaeger', '分布式链路追踪']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderArchitecture = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "1.2 系统架构" )
+
+      , _react2.default.createElement(Section, { title: "整体架构图",}
+        , _react2.default.createElement('div', { className: "bg-gray-950 rounded-lg border border-gray-700 p-6 font-mono text-xs overflow-x-auto"       ,}
+          , _react2.default.createElement('pre', { className: "text-gray-300",}, `┌─────────────────────────────────────────────────────────────────────────────┐
+│                              External Data Sources                           │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐           │
+│  │Inventory │ │  Sales   │ │  Supply  │ │ Weather  │ │Competitor│           │
+│  │  Store   │ │  Store   │ │  Store   │ │   API    │ │   API    │           │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘           │
+└───────┼────────────┼────────────┼────────────┼────────────┼─────────────────┘
+        │            │            │            │            │
+        └────────────┴────────────┼────────────┴────────────┘
+                                  │
+                    ┌─────────────▼─────────────┐
+                    │   DegradationService      │◄─── 统一数据加载与降级
+                    │  ┌─────────────────────┐  │
+                    │  │ • loadSnapshot()    │  │
+                    │  │ • checkSource()     │  │
+                    │  │ • getFallback()     │  │
+                    │  └─────────────────────┘  │
+                    └─────────────┬─────────────┘
+                                  │
+                                  │ DegradedSnapshot<T>
+                                  │
+┌─────────────────────────────────▼───────────────────────────────────────────┐
+│                              Coordinator                                     │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐              │
+│  │ Context Factory │  │ CircuitBreaker  │  │  RunMode Ctrl   │              │
+│  │ • initContext() │  │   Management    │  │ NORMAL/DRY_RUN  │              │
+│  │ • validate()    │  │                 │  │    /SHADOW      │              │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘              │
+│                                                                              │
+│  CoordinationContext { batchId, logicalTime, schemaVersion, ... }           │
+└─────────────────────────────────┬───────────────────────────────────────────┘
+                                  │
+                    ┌─────────────▼─────────────┐
+                    │       EventRouter         │
+                    │  ┌─────────────────────┐  │
+                    │  │ • Idempotency Check │  │
+                    │  │ • Circuit Breaker   │  │
+                    │  │ • Retry with Backoff│  │
+                    │  │ • Priority Queue    │  │
+                    │  └─────────────────────┘  │
+                    └─────────────┬─────────────┘
+                                  │
+        ┌─────────────┬───────────┼───────────┬─────────────┐
+        │             │           │           │             │
+        ▼             ▼           ▼           ▼             ▼
+┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐
+│ Scenario  │  │  Demand   │  │  Pricing  │  │Assortment │  │  Order    │
+│   Agent   │  │   Agent   │  │   Agent   │  │   Agent   │  │ Builder   │
+│           │  │           │  │           │  │           │  │           │
+│ • 场景识别 │  │ • 需求预测 │  │ • 价格决策 │  │ • 选品决策 │  │ • 订单生成 │
+│ • 信号融合 │  │ • 促销拆解 │  │ • 毛利控制 │  │ • 空间优化 │  │ • DOS计算 │
+└───────────┘  └───────────┘  └───────────┘  └───────────┘  └───────────┘
+                                  │
+                    ┌─────────────▼─────────────┐
+                    │      Output Layer         │
+                    │  • ReplenishOrder         │
+                    │  • PriceDecision          │
+                    │  • AssortmentPlan         │
+                    └───────────────────────────┘`)
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "模块职责矩阵",}
+        , _react2.default.createElement(Table, { 
+          headers: ['模块', '职责', '输入', '输出'],
+          rows: [
+            ['Coordinator', '全局协调、上下文管理、熔断管理', 'BatchRequest', 'CoordinationContext'],
+            ['EventRouter', '事件路由、幂等控制、重试策略', 'AgentTask', 'AgentResult'],
+            ['DegradationService', '统一降级、数据加载、质量评估', 'LoadOptions', 'DegradedSnapshot<T>'],
+            ['ScenarioAgent', '场景识别、信号融合、上下文构建', 'ExternalData', 'ScenarioContext'],
+            ['DemandAgent', '需求预测、促销处理、需求拆解', 'ScenarioContext', 'DemandForecast'],
+            ['PricingAgent', '价格决策、竞品分析、毛利控制', 'DemandForecast', 'PriceDecision'],
+            ['AssortmentAgent', '选品决策、空间优化、角色分配', 'Multiple', 'AssortmentPlan'],
+            ['OrderBuilder', '订单生成、约束处理、预算控制', 'DemandForecast', 'ReplenishOrder']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "Agent 依赖关系" ,}
+        , _react2.default.createElement('div', { className: "bg-gray-950 rounded-lg border border-gray-700 p-6 font-mono text-xs"      ,}
+          , _react2.default.createElement('pre', { className: "text-gray-300",}, `执行顺序（DAG）：
+
+  ScenarioAgent ─────┐
+        │            │
+        ▼            │
+  DemandAgent ───────┼─────► OrderBuilder
+        │            │            │
+        ▼            │            ▼
+  PricingAgent ──────┘      Output Store
+        │
+        ▼
+  AssortmentAgent
+
+依赖规则：
+• ScenarioAgent: 无依赖，首先执行
+• DemandAgent: 依赖 ScenarioAgent
+• PricingAgent: 依赖 DemandAgent
+• AssortmentAgent: 依赖 PricingAgent
+• OrderBuilder: 依赖 DemandAgent，可并行于 Pricing/Assortment`)
+        )
+      )
+    )
+  );
+
+  const renderDataFlow = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "1.3 数据流转" )
+
+      , _react2.default.createElement(Section, { title: "批次处理流程",}
+        , _react2.default.createElement('div', { className: "bg-gray-950 rounded-lg border border-gray-700 p-6 font-mono text-xs"      ,}
+          , _react2.default.createElement('pre', { className: "text-gray-300",}, `┌─────────────────────────────────────────────────────────────────────────┐
+│                         Batch Processing Flow                            │
+└─────────────────────────────────────────────────────────────────────────┘
+
+  BatchRequest                                                    BatchResponse
+      │                                                                 ▲
+      ▼                                                                 │
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   1. Init   │───►│  2. Load    │───►│  3. Execute │───►│ 4. Finalize │
+│   Context   │    │    Data     │    │    Agents   │    │   & Output  │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+      │                  │                  │                  │
+      ▼                  ▼                  ▼                  ▼
+• 生成 batchId      • 调用降级服务      • 按DAG顺序执行     • 汇总降级信息
+• 锁定 logicalTime  • 评估数据质量      • 熔断检查          • 计算置信度
+• 设置版本信息      • 应用降级策略      • 幂等控制          • 生成响应
+• 确定运行模式      • 记录降级快照      • 重试处理          • 持久化结果`)
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "数据流转详解",}
+        , _react2.default.createElement(CodeBlock, { id: "data-flow", code: `// Step 1: 初始化上下文
+const ctx = await coordinator.initContext({
+  storeIds: ["S001234", "S001235"],
+  requestTime: "2026-01-07T14:30:00.000Z",
+  options: { runMode: RunMode.NORMAL }
+});
+
+// Step 2: 加载数据（通过降级服务）
+const inventorySnapshot = await degradationService.loadSnapshot<InventoryData>(
+  'inventory',
+  ctx.logicalTime,
+  { required: true, maxSkewMs: 900000 }
+);
+
+const weatherSnapshot = await degradationService.loadSnapshot<WeatherData>(
+  'weather',
+  ctx.logicalTime,
+  { required: false, maxSkewMs: 3600000, fallbackPolicy: { kind: 'T_MINUS_1D' } }
+);
+
+// Step 3: 执行Agent链
+const scenarioResult = await router.dispatch({
+  agentName: 'scenario',
+  storeId: ctx.storeIds[0],
+  input: { inventory: inventorySnapshot, weather: weatherSnapshot }
+}, ctx);
+
+const demandResult = await router.dispatch({
+  agentName: 'demand',
+  storeId: ctx.storeIds[0],
+  input: { scenario: scenarioResult.output }
+}, ctx);
+
+// Step 4: 最终化
+const response = coordinator.finalize(ctx);`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "时间线示例",}
+        , _react2.default.createElement(Table, { 
+          headers: ['时间点', '动作', '关键数据'],
+          rows: [
+            ['T+0ms', '接收BatchRequest', 'storeIds, requestTime'],
+            ['T+5ms', '创建CoordinationContext', 'batchId, logicalTime, schemaVersion'],
+            ['T+10ms', '加载Inventory（必需）', 'DegradedSnapshot, completeness=0.98'],
+            ['T+50ms', '加载Weather（可选）', 'DegradedSnapshot, action=WARN'],
+            ['T+100ms', '执行ScenarioAgent', 'ScenarioContext'],
+            ['T+300ms', '执行DemandAgent', 'DemandForecast[]'],
+            ['T+500ms', '执行OrderBuilder', 'ReplenishOrder[]'],
+            ['T+600ms', '生成BatchResponse', 'status, confidenceScore, degradationSummary']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderGlossary = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "1.4 术语表" )
+
+      , _react2.default.createElement(Section, { title: "核心术语",}
+        , _react2.default.createElement(Table, { 
+          headers: ['术语', '英文', '定义', '示例'],
+          rows: [
+            ['批次ID', 'BatchId', '单次处理任务的唯一标识', 'B20260107143000_A1B2'],
+            ['逻辑时间', 'logicalTime', '批次内统一的业务时间戳', '2026-01-07T14:30:00.000Z'],
+            ['降级', 'Degradation', '数据质量不足时的容错策略', 'FALLBACK使用T-1数据'],
+            ['熔断', 'Circuit Breaker', '连续失败后自动跳过的保护机制', 'OPEN状态跳过执行'],
+            ['幂等键', 'Idempotency Key', '保证重复请求只执行一次的唯一键', 'batchId:step:storeId:time'],
+            ['置信度', 'Confidence', '决策可信程度的量化评分', '0.85 = 85%置信']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "业务术语",}
+        , _react2.default.createElement(Table, { 
+          headers: ['术语', '英文', '定义', '取值范围'],
+          rows: [
+            ['DOS', 'Days of Supply', '当前库存可销售天数', '1-30天'],
+            ['SKU角色', 'SKU Role', '商品在品类中的定位', 'TRAFFIC_DRIVER/MARGIN_MAKER/...'],
+            ['促销提升', 'Promo Lift', '促销活动带来的需求增量', '正数，单位：件'],
+            ['毛利带', 'Margin Band', '价格决策允许的毛利率区间', '[minMargin, maxMargin]'],
+            ['MOQ', 'Minimum Order Quantity', '供应商最小起订量', '正整数'],
+            ['箱规', 'Pack Size', '供应商最小包装单位', '正整数'],
+            ['温层', 'Temperature Zone', '商品存储温度要求', 'AMBIENT/CHILLED/FROZEN/HEATED']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "状态术语",}
+        , _react2.default.createElement(Table, { 
+          headers: ['术语', '说明', '后续动作'],
+          rows: [
+            ['OK', '数据正常，无降级', '正常处理'],
+            ['WARN', '数据有轻微问题，继续处理', '记录警告，降低置信度'],
+            ['FALLBACK', '使用降级数据', '使用备用数据，大幅降低置信度'],
+            ['REJECT', '拒绝处理', '返回错误，不生成决策'],
+            ['CLOSED', '熔断器关闭，正常执行', '正常路由到Agent'],
+            ['OPEN', '熔断器打开，跳过执行', '直接返回降级结果'],
+            ['HALF_OPEN', '熔断器半开，试探执行', '允许少量请求试探']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderBaseTypes = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "2.1 基础类型定义" )
+
+      , _react2.default.createElement(Section, { title: "品牌类型（Branded Types）" ,}
+        , _react2.default.createElement(Alert, { type: "info", title: "设计说明",}, "使用 TypeScript 品牌类型确保不同 ID 类型不能互相赋值，在编译期捕获类型错误。"
+
+        )
+        , _react2.default.createElement(CodeBlock, { id: "branded-types", title: "types/identifiers.ts", code: `/**
+ * 品牌类型基础定义
+ * 通过 unique symbol 确保类型不可互换
+ */
+
+// 门店ID - 格式: "S" + 6位数字
+type StoreId = string & { readonly brand: unique symbol };
+
+// SKU ID - 格式: "SKU" + 10位数字  
+type SkuId = string & { readonly brand: unique symbol };
+
+// 品类ID - 格式: "C" + 8位数字
+type CategoryId = string & { readonly brand: unique symbol };
+
+// 供应商ID - 格式: "SUP" + 6位数字
+type SupplierId = string & { readonly brand: unique symbol };
+
+// 批次ID - 格式: "B" + 时间戳 + "_" + 4位随机
+type BatchId = string & { readonly brand: unique symbol };
+
+// 促销ID - 格式: "P" + 日期 + 序号
+type PromoId = string & { readonly brand: unique symbol };
+
+// 事件ID - 格式: "E" + 日期 + 序号
+type EventId = string & { readonly brand: unique symbol };
+
+// 订单ID - 格式: "O" + 时间戳 + 4位随机
+type OrderId = string & { readonly brand: unique symbol };
+
+// ISO时间戳
+type ISOTimestamp = string & { readonly brand: unique symbol };
+
+// 类型守卫与工厂函数
+function isStoreId(value: string): value is StoreId {
+  return /^S\\d{6}$/.test(value);
+}
+
+function createStoreId(value: string): StoreId {
+  if (!isStoreId(value)) {
+    throw new ValidationError(\`Invalid StoreId format: \${value}\`);
+  }
+  return value as StoreId;
+}
+
+function createBatchId(): BatchId {
+  const timestamp = new Date().toISOString().replace(/[-:T.Z]/g, '').slice(0, 14);
+  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return \`B\${timestamp}_\${random}\` as BatchId;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "ID格式规范",}
+        , _react2.default.createElement(Table, { 
+          headers: ['类型', '格式', '正则表达式', '示例'],
+          rows: [
+            ['StoreId', 'S + 6位数字', '^S\\d{6}$', 'S001234'],
+            ['SkuId', 'SKU + 10位数字', '^SKU\\d{10}$', 'SKU0000012345'],
+            ['CategoryId', 'C + 8位数字', '^C\\d{8}$', 'C00001234'],
+            ['SupplierId', 'SUP + 6位数字', '^SUP\\d{6}$', 'SUP001234'],
+            ['BatchId', 'B + 时间戳 + 随机', '^B\\d{14}_[A-Z0-9]{4}$', 'B20260107143000_A1B2'],
+            ['PromoId', 'P + 日期 + 序号', '^P\\d{8}_\\d{4}$', 'P20260107_0001'],
+            ['OrderId', 'O + 时间戳 + 随机', '^O\\d{14}_[A-Z0-9]{4}$', 'O20260107143000_X9Y8']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "基础值类型",}
+        , _react2.default.createElement(CodeBlock, { id: "value-types", title: "types/values.ts", code: `/**
+ * 货币金额 - 统一使用分为单位，避免浮点精度问题
+ */
+type MoneyInCents = number & { readonly brand: unique symbol };
+
+/**
+ * 百分比 - 0到1之间的小数
+ */
+type Percentage = number & { readonly brand: unique symbol };
+
+/**
+ * 正整数 - 用于数量等必须为正的场景
+ */
+type PositiveInteger = number & { readonly brand: unique symbol };
+
+/**
+ * 非负数 - 用于库存等可以为0但不能为负的场景
+ */
+type NonNegativeNumber = number & { readonly brand: unique symbol };
+
+// 工厂函数
+function createMoneyInCents(yuan: number): MoneyInCents {
+  return Math.round(yuan * 100) as MoneyInCents;
+}
+
+function createPercentage(value: number): Percentage {
+  if (value < 0 || value > 1) {
+    throw new ValidationError(\`Percentage must be between 0 and 1: \${value}\`);
+  }
+  return value as Percentage;
+}
+
+function toYuan(cents: MoneyInCents): number {
+  return cents / 100;
+}`,} )
+      )
+    )
+  );
+
+  const renderEnumTypes = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "2.2 枚举类型" )
+
+      , _react2.default.createElement(Section, { title: "核心状态枚举",}
+        , _react2.default.createElement(CodeBlock, { id: "core-enums", title: "types/enums.ts", code: `/**
+ * 降级动作类型
+ * 定义数据加载后的处理决策
+ */
+enum DegradationAction {
+  OK = "OK",              // 数据正常，无需降级
+  WARN = "WARN",          // 数据有轻微问题，继续处理但记录警告
+  FALLBACK = "FALLBACK",  // 数据不可用，使用降级备选
+  REJECT = "REJECT"       // 关键数据缺失，拒绝处理
+}
+
+/**
+ * 熔断器状态
+ */
+enum CircuitState {
+  CLOSED = "CLOSED",      // 正常状态，允许请求通过
+  OPEN = "OPEN",          // 熔断状态，拒绝所有请求
+  HALF_OPEN = "HALF_OPEN" // 半开状态，允许试探性请求
+}
+
+/**
+ * 运行模式
+ */
+enum RunMode {
+  NORMAL = "NORMAL",      // 正常执行，结果落库
+  DRY_RUN = "DRY_RUN",    // 干跑模式，不落库
+  SHADOW = "SHADOW"       // 影子模式，对比新旧逻辑
+}
+
+/**
+ * 订单状态
+ */
+enum OrderStatus {
+  PENDING = "PENDING",    // 待审核
+  APPROVED = "APPROVED",  // 已批准
+  REJECTED = "REJECTED",  // 已拒绝
+  REVIEW = "REVIEW"       // 需人工审核
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "业务枚举",}
+        , _react2.default.createElement(CodeBlock, { id: "biz-enums", title: "types/business-enums.ts", code: `/**
+ * 温层类型
+ * 决定商品的存储和配送方式
+ */
+enum TemperatureZone {
+  AMBIENT = "AMBIENT",    // 常温 (15-25°C)
+  CHILLED = "CHILLED",    // 冷藏 (2-8°C)
+  FROZEN = "FROZEN",      // 冷冻 (-18°C以下)
+  HEATED = "HEATED"       // 加热 (55°C以上)
+}
+
+/**
+ * SKU角色
+ * 定义商品在品类中的战略定位
+ */
+enum SkuRole {
+  TRAFFIC_DRIVER = "TRAFFIC_DRIVER",  // 流量款：低毛利高销量，吸引客流
+  MARGIN_MAKER = "MARGIN_MAKER",      // 利润款：高毛利中销量，贡献利润
+  REGULAR = "REGULAR",                // 常规款：正常毛利正常销量
+  IMAGE = "IMAGE",                    // 形象款：品牌形象，不追求销量
+  SEASONAL = "SEASONAL",              // 季节款：季节性商品
+  NEW = "NEW"                         // 新品：需要观察期
+}
+
+/**
+ * 促销类型
+ */
+enum PromoType {
+  DISCOUNT = "DISCOUNT",              // 直接折扣
+  BUY_X_GET_Y = "BUY_X_GET_Y",       // 买X送Y
+  BUNDLE = "BUNDLE",                  // 捆绑销售
+  LOYALTY = "LOYALTY",                // 会员专享
+  FLASH_SALE = "FLASH_SALE"          // 限时抢购
+}
+
+/**
+ * 场景类型
+ */
+enum ScenarioType {
+  NORMAL = "NORMAL",                  // 正常日
+  HOLIDAY = "HOLIDAY",                // 节假日
+  PROMOTION = "PROMOTION",            // 大促期
+  WEATHER_EXTREME = "WEATHER_EXTREME",// 极端天气
+  LOCAL_EVENT = "LOCAL_EVENT",        // 本地事件
+  STOCKOUT_RISK = "STOCKOUT_RISK"    // 缺货风险
+}
+
+/**
+ * 周转率分类
+ */
+enum VelocityCategory {
+  LOW = "LOW",     // 低周转：月销 < 10
+  MID = "MID",     // 中周转：月销 10-50
+  HIGH = "HIGH"    // 高周转：月销 > 50
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "枚举使用规范",}
+        , _react2.default.createElement(Alert, { type: "warning", title: "重要规范",}, "所有枚举值必须使用大写字母和下划线，与数据库存储值保持一致。"
+
+        )
+        , _react2.default.createElement(Table, { 
+          headers: ['规则', '正确示例', '错误示例'],
+          rows: [
+            ['使用字符串枚举', 'enum Status { OK = "OK" }', 'enum Status { OK }'],
+            ['值与键相同', 'TRAFFIC_DRIVER = "TRAFFIC_DRIVER"', 'TrafficDriver = "traffic_driver"'],
+            ['使用枚举而非字符串字面量', 'role: SkuRole.TRAFFIC_DRIVER', 'role: "TRAFFIC_DRIVER"'],
+            ['比较使用枚举值', 'if (role === SkuRole.NEW)', 'if (role === "NEW")']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderContextTypes = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "2.3 上下文类型" )
+
+      , _react2.default.createElement(Alert, { type: "error", title: "最重要的类型",}, "CoordinationContext 是整个系统最核心的类型，贯穿所有 Agent 的执行过程。 任何 Agent 的 logicalTime 必须与 ctx.logicalTime 完全一致。"
+
+
+      )
+
+      , _react2.default.createElement(Section, { title: "CoordinationContext（协调上下文）",}
+        , _react2.default.createElement(CodeBlock, { id: "coord-ctx-full", title: "types/context.ts", code: `/**
+ * 协调上下文 - 系统最核心的上下文类型
+ * 
+ * @description
+ * 贯穿整个批次处理的上下文对象，确保：
+ * 1. 所有Agent使用同一个logicalTime
+ * 2. 版本信息完整可追溯
+ * 3. 降级状态统一管理
+ */
+interface CoordinationContext {
+  // ==================== 批次标识 ====================
+  /** 批次唯一标识，格式: B + 时间戳 + 随机 */
+  batchId: BatchId;
+  
+  /** 
+   * 批次逻辑时间 - 极其重要
+   * 所有Agent必须使用此时间，禁止使用系统当前时间
+   */
+  logicalTime: ISOTimestamp;
+  
+  // ==================== 版本信息（必填）====================
+  /** Schema版本，当前固定为 "1.2" */
+  schemaVersion: "1.2";
+  
+  /** 配置版本，格式: cfg_YYYY-MM-DD_序号 */
+  configVersion: string;
+  
+  /** 规则版本，格式: rule_主版本.次版本.修订 */
+  ruleVersion: string;
+  
+  /** 配置校验和，用于检测配置变更 */
+  configChecksum: string;
+  
+  // ==================== 数据源配置 ====================
+  /** 必需数据源列表，缺失则REJECT */
+  requiredSources: string[];
+  
+  /** 可选数据源列表，缺失则降级 */
+  optionalSources: string[];
+  
+  /** 时间偏移容忍度（毫秒） */
+  timeSkewToleranceMs: number;
+  
+  // ==================== 运行控制 ====================
+  /** 运行模式 */
+  runMode: RunMode;
+  
+  /** 本批次处理的门店列表 */
+  storeIds: StoreId[];
+  
+  /** 分布式追踪ID */
+  traceId: string;
+  
+  // ==================== 运行时状态（执行过程中填充）====================
+  /** 降级汇总 */
+  degradationSummary?: DegradationSummary;
+  
+  /** Agent执行结果 */
+  agentResults?: Map<string, AgentResult>;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "DegradedSnapshot（降级快照）",}
+        , _react2.default.createElement(CodeBlock, { id: "degraded-snapshot", title: "types/degradation.ts", code: `/**
+ * 降级快照 - 数据加载结果的统一封装
+ * 
+ * @template T 实际数据类型
+ * 
+ * @description
+ * 所有外部数据加载都返回此类型，包含：
+ * - 数据本身（可能为空）
+ * - 数据质量评估
+ * - 降级决策
+ */
+interface DegradedSnapshot<T> {
+  // ==================== 降级决策 ====================
+  /** 降级动作：OK | WARN | FALLBACK | REJECT */
+  action: DegradationAction;
+  
+  /** 数据源名称 */
+  source: string;
+  
+  // ==================== 质量评估 ====================
+  /** 时间偏移（毫秒），数据时间与logicalTime的差值 */
+  skewMs: number;
+  
+  /** 
+   * 数据完整度评分 (0~1)
+   * 1.0 = 完全完整
+   * 0.8 = 80%数据可用
+   * 0.0 = 无数据
+   */
+  completenessScore: number;
+  
+  /** 
+   * 置信度惩罚 (0~1)
+   * 0.0 = 无惩罚
+   * 0.2 = 20%惩罚
+   * 1.0 = 完全不可信
+   */
+  confidencePenalty: number;
+  
+  // ==================== 数据 ====================
+  /** 实际数据，REJECT时为undefined */
+  data?: T;
+  
+  /** 降级来源，使用FALLBACK时记录 */
+  fallbackFrom?: string;
+  
+  // ==================== 元信息 ====================
+  /** 警告信息列表 */
+  warnings: string[];
+  
+  /** 数据加载时间 */
+  loadedAt: ISOTimestamp;
+  
+  /** 原始数据时间 */
+  dataAsOf?: ISOTimestamp;
+}
+
+/**
+ * 降级汇总 - 批次级别的降级统计
+ */
+interface DegradationSummary {
+  /** 总数据源数量 */
+  totalSources: number;
+  
+  /** 发生降级的数量 */
+  degradedCount: number;
+  
+  /** 按数据源的详细信息 */
+  bySource: Record<string, {
+    action: DegradationAction;
+    skewMs: number;
+    completenessScore: number;
+    confidencePenalty: number;
+    warnings: string[];
+  }>;
+  
+  /** 总置信度惩罚 */
+  totalConfidencePenalty: number;
+  
+  /** 最严重的降级动作 */
+  worstAction: DegradationAction;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "ScenarioContext（场景上下文）",}
+        , _react2.default.createElement(CodeBlock, { id: "scenario-ctx", title: "types/scenario.ts", code: `/**
+ * 场景上下文 - ScenarioAgent的输出
+ * 
+ * @description
+ * 封装当前决策场景的所有相关信息，供下游Agent使用
+ */
+interface ScenarioContext {
+  /** 关联的门店 */
+  storeId: StoreId;
+  
+  /** 场景类型 */
+  scenarioType: ScenarioType;
+  
+  /** 场景置信度 (0~1) */
+  confidence: number;
+  
+  /** 
+   * 场景信号 - 各维度的信号值
+   * 用于细粒度的决策调整
+   */
+  signals: {
+    /** 天气信号 */
+    weather: WeatherSignal;
+    
+    /** 促销信号 */
+    promotion: PromotionSignal;
+    
+    /** 事件信号 */
+    event: EventSignal;
+    
+    /** 库存信号 */
+    inventory: InventorySignal;
+    
+    /** 竞争信号 */
+    competition: CompetitionSignal;
+  };
+  
+  /** 场景生效时间范围 */
+  effectivePeriod: {
+    start: ISOTimestamp;
+    end: ISOTimestamp;
+  };
+  
+  /** 场景识别时间 */
+  detectedAt: ISOTimestamp;
+  
+  /** 使用的模型版本 */
+  modelVersion: string;
+}
+
+interface WeatherSignal {
+  /** 当前温度 (°C) */
+  temperature: number;
+  
+  /** 天气状况 */
+  condition: "SUNNY" | "CLOUDY" | "RAINY" | "SNOWY" | "EXTREME";
+  
+  /** 温度变化趋势 */
+  trend: "RISING" | "STABLE" | "FALLING";
+  
+  /** 信号强度 (0~1) */
+  strength: number;
+  
+  /** 是否降级数据 */
+  isDegraded: boolean;
+}`,} )
+      )
+    )
+  );
+
+  const renderDomainTypes = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "2.4 领域模型类型" )
+
+      , _react2.default.createElement(Section, { title: "需求拆解模型（DemandDecomposition）",}
+        , _react2.default.createElement(Alert, { type: "warning", title: "核心设计",}, "需求拆解是防止促销/事件增量重复计算的关键机制。 通过 includedInForecast 标记区分哪些增量已在基础预测中。"
+
+
+        )
+        , _react2.default.createElement(CodeBlock, { id: "demand-decomp", title: "types/demand.ts", code: `/**
+ * 需求拆解 - 将总需求分解为各组成部分
+ * 
+ * @description
+ * 核心设计目标：防止促销和事件增量的重复计算
+ * 
+ * 计算公式：
+ * totalDemand = baseline + Σ(未包含的promoLifts) + Σ(未包含的eventLifts)
+ */
+interface DemandDecomposition {
+  // ==================== 基础需求 ====================
+  /** 基线需求（不含任何促销/事件影响） */
+  baseline: number;
+  
+  // ==================== 促销增量 ====================
+  /** 各促销的需求增量 */
+  promoLifts: Record<PromoId, number>;
+  
+  // ==================== 事件增量 ====================
+  /** 各事件的需求增量 */
+  eventLifts: Record<EventId, number>;
+  
+  // ==================== 包含标记（关键）====================
+  /**
+   * 预测包含标记
+   * 
+   * true = 该增量已在基础预测模型中体现
+   * false = 该增量需要额外叠加
+   * 
+   * @example
+   * 假设促销P001的lift=100：
+   * - 如果 includedInForecast.promo["P001"] = true
+   *   表示基础预测已考虑此促销，不需要额外加100
+   * - 如果 includedInForecast.promo["P001"] = false
+   *   表示需要在基础预测上额外加100
+   */
+  includedInForecast: {
+    promo: Record<PromoId, boolean>;
+    event: Record<EventId, boolean>;
+  };
+  
+  // ==================== 汇总 ====================
+  /** 总需求（已考虑包含标记） */
+  totalDemand: number;
+  
+  /** 计算时间 */
+  calculatedAt: ISOTimestamp;
+  
+  /** 模型版本 */
+  modelVersion: string;
+}
+
+/**
+ * 计算需要额外预留的需求量
+ * 只预留 includedInForecast=false 的增量
+ */
+function calculatePromoReservation(decomp: DemandDecomposition): number {
+  let reservation = 0;
+  
+  for (const [promoId, lift] of Object.entries(decomp.promoLifts)) {
+    if (!decomp.includedInForecast.promo[promoId]) {
+      reservation += lift;
+    }
+  }
+  
+  for (const [eventId, lift] of Object.entries(decomp.eventLifts)) {
+    if (!decomp.includedInForecast.event[eventId]) {
+      reservation += lift;
+    }
+  }
+  
+  return reservation;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "需求预测模型（DemandForecast）",}
+        , _react2.default.createElement(CodeBlock, { id: "demand-forecast", title: "types/demand.ts", code: `/**
+ * 需求预测结果
+ */
+interface DemandForecast {
+  /** SKU标识 */
+  skuId: SkuId;
+  
+  /** 门店标识 */
+  storeId: StoreId;
+  
+  /** 预测时间范围（天） */
+  horizonDays: number;
+  
+  /** 每日预测需求 */
+  dailyDemand: number[];
+  
+  /** 总预测需求 */
+  totalDemand: number;
+  
+  /** 日均需求 */
+  avgDailyDemand: number;
+  
+  /** 需求拆解（核心） */
+  decomposition: DemandDecomposition;
+  
+  /** 预测置信度 (0~1) */
+  confidence: number;
+  
+  /** 置信度低的原因 */
+  confidenceReasons: string[];
+  
+  /** 使用的预测模型 */
+  modelUsed: string;
+  
+  /** 预测生成时间 */
+  forecastedAt: ISOTimestamp;
+  
+  /** 使用的数据截止时间 */
+  dataAsOf: ISOTimestamp;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "补货订单模型（ReplenishOrder）",}
+        , _react2.default.createElement(CodeBlock, { id: "replenish-order", title: "types/order.ts", code: `/**
+ * 补货订单
+ */
+interface ReplenishOrder {
+  /** 订单ID */
+  orderId: OrderId;
+  
+  /** 门店ID */
+  storeId: StoreId;
+  
+  /** 批次ID */
+  batchId: BatchId;
+  
+  /** 订单行 */
+  lines: OrderLine[];
+  
+  /** 订单总金额（分） */
+  totalValue: MoneyInCents;
+  
+  /** 订单状态 */
+  status: OrderStatus;
+  
+  /** 预算检查结果 */
+  budgetCheck: BudgetCheckResult;
+  
+  /** 订单置信度 */
+  confidenceScore: number;
+  
+  /** 置信度原因 */
+  confidenceReasons: string[];
+  
+  /** 创建时间 */
+  createdAt: ISOTimestamp;
+  
+  /** 逻辑时间（继承自批次） */
+  logicalTime: ISOTimestamp;
+}
+
+/**
+ * 订单行
+ */
+interface OrderLine {
+  /** SKU ID */
+  skuId: SkuId;
+  
+  /** 订购数量（最终） */
+  quantity: number;
+  
+  /** 单位成本（分） */
+  unitCost: MoneyInCents;
+  
+  /** 供应商ID */
+  supplierId: SupplierId;
+  
+  /** 需求依据 */
+  demandBasis: DemandDecomposition;
+  
+  /** 目标DOS */
+  dosTarget: number;
+  
+  /** 当前库存 */
+  currentStock: number;
+  
+  /** 原始计算数量（调整前） */
+  originalQuantity: number;
+  
+  /** 调整原因（如箱规取整、预算限制等） */
+  adjustmentReason?: string;
+  
+  /** 行置信度 */
+  confidence: number;
+}
+
+/**
+ * 预算检查结果
+ */
+interface BudgetCheckResult {
+  /** 是否通过 */
+  passed: boolean;
+  
+  /** 检查类型 */
+  checkType: "HARD" | "SOFT";
+  
+  /** 预算额度（分） */
+  budgetLimit: MoneyInCents;
+  
+  /** 订单金额（分） */
+  orderAmount: MoneyInCents;
+  
+  /** 使用率 */
+  utilizationRate: number;
+  
+  /** 超出金额（如果超出） */
+  overAmount?: MoneyInCents;
+  
+  /** 按品类的使用情况 */
+  byCategory?: Record<CategoryId, {
+    limit: MoneyInCents;
+    used: MoneyInCents;
+  }>;
+}`,} )
+      )
+    )
+  );
+
+  const renderResultTypes = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "2.5 结果类型" )
+
+      , _react2.default.createElement(Section, { title: "Result 类型（统一返回）" ,}
+        , _react2.default.createElement(CodeBlock, { id: "result-type", title: "types/result.ts", code: `/**
+ * 统一结果类型 - 替代抛出异常
+ * 
+ * @template T 成功时的数据类型
+ * @template E 失败时的错误类型
+ */
+type Result<T, E = AppError> = Success<T> | Failure<E>;
+
+interface Success<T> {
+  success: true;
+  data: T;
+}
+
+interface Failure<E> {
+  success: false;
+  error: E;
+}
+
+// 工厂函数
+function ok<T>(data: T): Success<T> {
+  return { success: true, data };
+}
+
+function fail<E>(error: E): Failure<E> {
+  return { success: false, error };
+}
+
+// 使用示例
+async function processOrder(req: OrderRequest): Promise<Result<Order>> {
+  const validation = validateRequest(req);
+  if (!validation.success) {
+    return fail(validation.error);
+  }
+  
+  const order = await createOrder(req);
+  return ok(order);
+}
+
+// 调用方
+const result = await processOrder(request);
+if (result.success) {
+  console.log("Order created:", result.data.orderId);
+} else {
+  console.error("Failed:", result.error.code);
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "AgentResult（Agent执行结果）",}
+        , _react2.default.createElement(CodeBlock, { id: "agent-result", title: "types/agent.ts", code: `/**
+ * Agent执行结果
+ */
+interface AgentResult<T = unknown> {
+  /** 任务ID */
+  taskId: string;
+  
+  /** Agent名称 */
+  agentName: string;
+  
+  /** 是否成功 */
+  success: boolean;
+  
+  /** 输出数据（成功时） */
+  output?: T;
+  
+  /** 错误信息（失败时） */
+  error?: AgentError;
+  
+  /** 执行耗时（毫秒） */
+  durationMs: number;
+  
+  /** 重试次数 */
+  retryCount: number;
+  
+  /** 是否使用了降级数据 */
+  usedDegradedData: boolean;
+  
+  /** 置信度 */
+  confidence: number;
+  
+  /** 执行时间 */
+  executedAt: ISOTimestamp;
+}
+
+/**
+ * Agent错误
+ */
+interface AgentError {
+  /** 错误码 */
+  code: string;
+  
+  /** 错误消息 */
+  message: string;
+  
+  /** 严重程度 */
+  severity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
+  
+  /** 是否可重试 */
+  retryable: boolean;
+  
+  /** 原始错误 */
+  cause?: Error;
+  
+  /** 额外上下文 */
+  context?: Record<string, unknown>;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "BatchResponse（批次响应）",}
+        , _react2.default.createElement(CodeBlock, { id: "batch-response", title: "types/batch.ts", code: `/**
+ * 批次处理响应 - API返回的完整结果
+ * 
+ * 注意：所有版本字段和降级汇总都是必填的
+ */
+interface BatchResponse {
+  // ==================== 批次标识 ====================
+  batchId: BatchId;
+  
+  // ==================== 版本信息（必填）====================
+  /** 生效的Schema版本 */
+  effectiveSchemaVersion: string;
+  
+  /** 配置版本 */
+  configVersion: string;
+  
+  /** 规则版本 */
+  ruleVersion: string;
+  
+  /** 配置校验和 */
+  configChecksum: string;
+  
+  // ==================== 状态 ====================
+  /** 处理状态 */
+  status: "SUCCESS" | "PARTIAL" | "FAILED";
+  
+  /** 逻辑时间 */
+  logicalTime: ISOTimestamp;
+  
+  // ==================== 降级信息（必填）====================
+  /** 降级汇总 */
+  degradationSummary: DegradationSummary;
+  
+  // ==================== 置信度（必填）====================
+  /** 整体置信度 (0~1) */
+  confidenceScore: number;
+  
+  /** 置信度原因列表 */
+  confidenceReasons: string[];
+  
+  // ==================== 结果 ====================
+  /** 生成的订单列表 */
+  orders?: ReplenishOrder[];
+  
+  /** 处理的门店数 */
+  processedStoreCount: number;
+  
+  /** 失败的门店 */
+  failedStores?: Array<{
+    storeId: StoreId;
+    error: AgentError;
+  }>;
+  
+  // ==================== 时间 ====================
+  /** 开始时间 */
+  startedAt: ISOTimestamp;
+  
+  /** 完成时间 */
+  completedAt: ISOTimestamp;
+  
+  /** 总耗时（毫秒） */
+  durationMs: number;
+}`,} )
+      )
+    )
+  );
+
+  const renderCoordinator = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "3.1 Coordinator 职责概述"  )
+
+      , _react2.default.createElement(Section, { title: "核心职责",}
+        , _react2.default.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-4"   ,}
+          , [
+            { icon: _react2.default.createElement(_lucidereact.Clock, { size: 20,} ), title: '时间管理', desc: '创建并锁定 logicalTime，确保批次内时间一致' },
+            { icon: _react2.default.createElement(_lucidereact.FileText, { size: 20,} ), title: '上下文管理', desc: '创建、维护 CoordinationContext' },
+            { icon: _react2.default.createElement(_lucidereact.Shield, { size: 20,} ), title: '熔断管理', desc: '管理 Agent 级别的熔断状态' },
+            { icon: _react2.default.createElement(_lucidereact.Settings, { size: 20,} ), title: '版本管理', desc: '回写 schemaVersion/configVersion/ruleVersion' },
+            { icon: _react2.default.createElement(_lucidereact.CheckCircle, { size: 20,} ), title: '数据校验', desc: '验证必需数据源的可用性' },
+            { icon: _react2.default.createElement(_lucidereact.Activity, { size: 20,} ), title: '模式控制', desc: '控制 NORMAL/DRY_RUN/SHADOW 运行模式' }
+          ].map((item, i) => (
+            _react2.default.createElement('div', { key: i, className: "bg-gray-800 border border-gray-700 rounded-lg p-4 flex items-start gap-3"       ,}
+              , _react2.default.createElement('div', { className: "text-cyan-400 mt-1" ,}, item.icon)
+              , _react2.default.createElement('div', null
+                , _react2.default.createElement('h4', { className: "font-semibold",}, item.title)
+                , _react2.default.createElement('p', { className: "text-sm text-gray-400" ,}, item.desc)
+              )
+            )
+          ))
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "接口定义",}
+        , _react2.default.createElement(CodeBlock, { id: "coordinator-interface", title: "coordinator/interface.ts", code: `/**
+ * Coordinator 接口定义
+ */
+interface ICoordinator {
+  /**
+   * 初始化协调上下文
+   * 这是批次处理的第一步
+   */
+  initContext(request: BatchRequest): Promise<Result<CoordinationContext>>;
+  
+  /**
+   * 验证Agent时间一致性
+   * 任何Agent的logicalTime必须与ctx.logicalTime一致
+   * 
+   * @throws ValidationError 如果时间不一致
+   */
+  validateAgentTime(agentTime: ISOTimestamp, ctx: CoordinationContext): void;
+  
+  /**
+   * 检查数据源可用性
+   * 对requiredSources执行强校验
+   */
+  checkSourceAvailability(
+    sources: string[], 
+    ctx: CoordinationContext
+  ): Promise<SourceCheckResult>;
+  
+  /**
+   * 获取Agent的熔断状态
+   */
+  getCircuitState(agentName: string): CircuitState;
+  
+  /**
+   * 记录Agent执行结果（用于熔断统计）
+   */
+  recordAgentResult(agentName: string, success: boolean): void;
+  
+  /**
+   * 最终化批次处理，生成响应
+   */
+  finalize(ctx: CoordinationContext): BatchResponse;
+}
+
+interface BatchRequest {
+  /** 要处理的门店列表 */
+  storeIds: StoreId[];
+  
+  /** 请求时间（可选，默认为当前时间） */
+  requestTime?: ISOTimestamp;
+  
+  /** 处理选项 */
+  options?: {
+    runMode?: RunMode;
+    priority?: number;
+    timeoutMs?: number;
+  };
+  
+  /** 请求ID（幂等用） */
+  requestId?: string;
+}
+
+interface SourceCheckResult {
+  /** 是否全部通过 */
+  allAvailable: boolean;
+  
+  /** 各数据源状态 */
+  sources: Record<string, {
+    available: boolean;
+    skewMs?: number;
+    completeness?: number;
+    error?: string;
+  }>;
+  
+  /** 阻塞原因（如果有） */
+  blockers: string[];
+}`,} )
+      )
+    )
+  );
+
+  const renderCoordContextCreate = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "3.2 Context 创建"  )
+
+      , _react2.default.createElement(Section, { title: "创建流程",}
+        , _react2.default.createElement(CodeBlock, { id: "ctx-create-impl", title: "coordinator/context-factory.ts", code: `/**
+ * 创建协调上下文
+ */
+async function createCoordinationContext(
+  request: BatchRequest,
+  config: GlobalConfig
+): Promise<CoordinationContext> {
+  // 1. 生成批次ID
+  const batchId = generateBatchId();
+  
+  // 2. 锁定逻辑时间
+  // 优先使用请求时间，否则使用当前时间
+  const logicalTime = request.requestTime || new Date().toISOString() as ISOTimestamp;
+  
+  // 3. 计算配置校验和
+  const configChecksum = computeChecksum(config);
+  
+  // 4. 生成追踪ID
+  const traceId = generateTraceId();
+  
+  // 5. 构建上下文
+  const ctx: CoordinationContext = {
+    batchId,
+    logicalTime,
+    
+    // 版本信息（必填）
+    schemaVersion: "1.2",
+    configVersion: config.version,           // 如 "cfg_2026-01-07_01"
+    ruleVersion: config.ruleEngine.version,  // 如 "rule_6.4.0"
+    configChecksum,
+    
+    // 数据源配置
+    requiredSources: config.timeSkew.criticalSources.sources,
+    optionalSources: config.timeSkew.nonCriticalSources.sources,
+    timeSkewToleranceMs: config.timeSkew.criticalSources.maxSkewMs,
+    
+    // 运行控制
+    runMode: request.options?.runMode || RunMode.NORMAL,
+    storeIds: request.storeIds,
+    traceId
+  };
+  
+  // 6. 初始化降级汇总
+  ctx.degradationSummary = {
+    totalSources: 0,
+    degradedCount: 0,
+    bySource: {},
+    totalConfidencePenalty: 0,
+    worstAction: DegradationAction.OK
+  };
+  
+  // 7. 记录日志
+  logger.info("Context created", {
+    batchId,
+    logicalTime,
+    storeCount: request.storeIds.length,
+    runMode: ctx.runMode
+  });
+  
+  return ctx;
+}
+
+/**
+ * 生成批次ID
+ * 格式: B + 14位时间戳 + _ + 4位随机
+ */
+function generateBatchId(): BatchId {
+  const timestamp = new Date()
+    .toISOString()
+    .replace(/[-:T.Z]/g, '')
+    .slice(0, 14);
+  const random = Math.random()
+    .toString(36)
+    .substring(2, 6)
+    .toUpperCase();
+  return \`B\${timestamp}_\${random}\` as BatchId;
+}
+
+/**
+ * 计算配置校验和
+ */
+function computeChecksum(config: GlobalConfig): string {
+  const content = JSON.stringify(config);
+  return crypto.createHash('sha256').update(content).digest('hex').slice(0, 16);
+}`,} )
+      )
+    )
+  );
+
+  const renderCoordValidation = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "3.3 校验规则" )
+
+      , _react2.default.createElement(Alert, { type: "error", title: "强制规则",}, "任何 Agent 的入参 logicalTime 必须与 ctx.logicalTime 完全一致，否则直接 REJECT。 这是系统最重要的校验规则。"
+
+
+      )
+
+      , _react2.default.createElement(Section, { title: "时间校验",}
+        , _react2.default.createElement(CodeBlock, { id: "time-validation", title: "coordinator/validation.ts", code: `/**
+ * 验证Agent时间一致性
+ * 
+ * @throws ValidationError 时间不一致时抛出
+ */
+function validateAgentTime(
+  agentTime: ISOTimestamp, 
+  ctx: CoordinationContext
+): void {
+  if (agentTime !== ctx.logicalTime) {
+    throw new ValidationError({
+      code: "BAD_CONTEXT_TIME",
+      message: \`Agent时间(\${agentTime})与批次时间(\${ctx.logicalTime})不一致\`,
+      severity: "CRITICAL",
+      context: {
+        expected: ctx.logicalTime,
+        actual: agentTime,
+        batchId: ctx.batchId
+      }
+    });
+  }
+}
+
+/**
+ * 验证数据源时间偏移
+ */
+function validateDataSkew(
+  dataTime: ISOTimestamp,
+  logicalTime: ISOTimestamp,
+  maxSkewMs: number,
+  sourceName: string
+): SkewValidationResult {
+  const skewMs = Math.abs(
+    new Date(logicalTime).getTime() - new Date(dataTime).getTime()
+  );
+  
+  if (skewMs > maxSkewMs) {
+    return {
+      valid: false,
+      skewMs,
+      message: \`数据源 \${sourceName} 时间偏移 \${skewMs}ms 超过阈值 \${maxSkewMs}ms\`
+    };
+  }
+  
+  return { valid: true, skewMs };
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "校验规则矩阵",}
+        , _react2.default.createElement(Table, { 
+          headers: ['校验项', '条件', '动作', '错误码'],
+          rows: [
+            ['Agent logicalTime', '与 ctx.logicalTime 不一致', 'REJECT', 'BAD_CONTEXT_TIME'],
+            ['requiredSource 缺失', '数据源返回空', 'REJECT', 'CRITICAL_SOURCE_MISSING'],
+            ['requiredSource 超时', 'skewMs > maxSkewMs', 'REJECT', 'CRITICAL_SOURCE_STALE'],
+            ['requiredSource 不完整', 'completeness < threshold', 'REJECT', 'CRITICAL_SOURCE_INCOMPLETE'],
+            ['optionalSource 缺失', '数据源返回空', '继续 + 降级', '-'],
+            ['optionalSource 超时', 'skewMs > maxSkewMs', '继续 + 降低置信度', '-'],
+            ['schemaVersion 不匹配', '版本不一致', 'REJECT', 'SCHEMA_VERSION_MISMATCH']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderCoordLifecycle = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "3.4 生命周期管理" )
+
+      , _react2.default.createElement(Section, { title: "批次生命周期",}
+        , _react2.default.createElement('div', { className: "bg-gray-950 rounded-lg border border-gray-700 p-6 font-mono text-xs"      ,}
+          , _react2.default.createElement('pre', { className: "text-gray-300",}, `┌─────────────────────────────────────────────────────────────────┐
+│                    Batch Lifecycle                               │
+└─────────────────────────────────────────────────────────────────┘
+
+  ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+  │ PENDING  │────►│  INIT    │────►│ RUNNING  │────►│FINALIZING│
+  └──────────┘     └──────────┘     └──────────┘     └──────────┘
+       │                │                │                │
+       │                │                │                ▼
+       │                │                │          ┌──────────┐
+       │                │                └─────────►│ SUCCESS  │
+       │                │                           └──────────┘
+       │                │                                 
+       │                ▼                           ┌──────────┐
+       │          ┌──────────┐                ┌────►│ PARTIAL  │
+       └─────────►│ REJECTED │                │     └──────────┘
+                  └──────────┘                │
+                                              │     ┌──────────┐
+                                              └────►│  FAILED  │
+                                                    └──────────┘
+
+状态说明：
+• PENDING: 请求已接收，等待处理
+• INIT: 正在初始化Context，校验数据源
+• RUNNING: Agent正在执行
+• FINALIZING: 汇总结果，生成响应
+• SUCCESS: 全部成功
+• PARTIAL: 部分成功（某些门店失败）
+• FAILED: 全部失败
+• REJECTED: 初始化阶段被拒绝（关键数据缺失）`)
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "Finalize 实现" ,}
+        , _react2.default.createElement(CodeBlock, { id: "finalize", title: "coordinator/finalize.ts", code: `/**
+ * 最终化批次处理
+ */
+function finalize(ctx: CoordinationContext): BatchResponse {
+  const endTime = new Date().toISOString() as ISOTimestamp;
+  const startTime = ctx.logicalTime;
+  const durationMs = new Date(endTime).getTime() - new Date(startTime).getTime();
+  
+  // 1. 汇总Agent结果
+  const agentResults = ctx.agentResults || new Map();
+  const failedStores: Array<{ storeId: StoreId; error: AgentError }> = [];
+  const orders: ReplenishOrder[] = [];
+  
+  for (const [key, result] of agentResults) {
+    if (!result.success && result.error) {
+      const storeId = extractStoreId(key);
+      failedStores.push({ storeId, error: result.error });
+    }
+    if (result.output && isReplenishOrder(result.output)) {
+      orders.push(result.output);
+    }
+  }
+  
+  // 2. 确定最终状态
+  const status = determineStatus(ctx.storeIds.length, failedStores.length);
+  
+  // 3. 计算最终置信度
+  const confidenceScore = calculateFinalConfidence(ctx);
+  const confidenceReasons = collectConfidenceReasons(ctx);
+  
+  // 4. 构建响应
+  return {
+    batchId: ctx.batchId,
+    
+    // 版本信息（必填）
+    effectiveSchemaVersion: ctx.schemaVersion,
+    configVersion: ctx.configVersion,
+    ruleVersion: ctx.ruleVersion,
+    configChecksum: ctx.configChecksum,
+    
+    status,
+    logicalTime: ctx.logicalTime,
+    
+    // 降级信息（必填）
+    degradationSummary: ctx.degradationSummary!,
+    
+    // 置信度（必填）
+    confidenceScore,
+    confidenceReasons,
+    
+    // 结果
+    orders,
+    processedStoreCount: ctx.storeIds.length - failedStores.length,
+    failedStores: failedStores.length > 0 ? failedStores : undefined,
+    
+    // 时间
+    startedAt: startTime,
+    completedAt: endTime,
+    durationMs
+  };
+}
+
+function determineStatus(
+  totalStores: number, 
+  failedCount: number
+): "SUCCESS" | "PARTIAL" | "FAILED" {
+  if (failedCount === 0) return "SUCCESS";
+  if (failedCount === totalStores) return "FAILED";
+  return "PARTIAL";
+}`,} )
+      )
+    )
+  );
+
+  const renderRouter = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "4.1 EventRouter 事件路由"  )
+
+      , _react2.default.createElement(Section, { title: "职责概述",}
+        , _react2.default.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-4"   ,}
+          , [
+            { title: '任务分发', desc: '将任务路由到对应的Agent' },
+            { title: '幂等控制', desc: '基于幂等键防止重复执行' },
+            { title: '熔断保护', desc: '检查Agent熔断状态' },
+            { title: '重试策略', desc: '对可重试错误进行退避重试' }
+          ].map((item, i) => (
+            _react2.default.createElement('div', { key: i, className: "bg-gray-800 border border-gray-700 rounded-lg p-4"    ,}
+              , _react2.default.createElement('h4', { className: "font-semibold text-cyan-400" ,}, item.title)
+              , _react2.default.createElement('p', { className: "text-sm text-gray-400 mt-1"  ,}, item.desc)
+            )
+          ))
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "接口定义",}
+        , _react2.default.createElement(CodeBlock, { id: "router-interface", title: "router/interface.ts", code: `/**
+ * EventRouter 接口
+ */
+interface IEventRouter {
+  /**
+   * 分发单个任务
+   */
+  dispatch(task: AgentTask, ctx: CoordinationContext): Promise<AgentResult>;
+  
+  /**
+   * 批量分发任务
+   */
+  dispatchBatch(
+    tasks: AgentTask[], 
+    ctx: CoordinationContext
+  ): Promise<AgentResult[]>;
+  
+  /**
+   * 检查任务是否已执行（幂等检查）
+   */
+  isExecuted(idempotencyKey: string): Promise<boolean>;
+  
+  /**
+   * 获取Agent熔断状态
+   */
+  getCircuitState(agentName: string): CircuitState;
+  
+  /**
+   * 获取待处理任务数
+   */
+  getPendingCount(): number;
+}
+
+/**
+ * Agent任务
+ */
+interface AgentTask {
+  /** 任务ID */
+  taskId: string;
+  
+  /** Agent名称 */
+  agentName: string;
+  
+  /** 门店ID */
+  storeId: StoreId;
+  
+  /** 输入数据 */
+  input: unknown;
+  
+  /** 优先级（越小越优先） */
+  priority?: number;
+  
+  /** 超时时间（毫秒） */
+  timeoutMs?: number;
+  
+  /** 自定义幂等键（可选） */
+  idempotencyKey?: string;
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "分发流程",}
+        , _react2.default.createElement(CodeBlock, { id: "dispatch-flow", title: "router/dispatch.ts", code: `/**
+ * 任务分发核心逻辑
+ */
+async function dispatch(
+  task: AgentTask, 
+  ctx: CoordinationContext
+): Promise<AgentResult> {
+  const startTime = Date.now();
+  
+  // 1. 生成幂等键
+  const idempotencyKey = task.idempotencyKey || 
+    generateIdempotencyKey(ctx, task.agentName, task.storeId);
+  
+  // 2. 幂等检查
+  const alreadyExecuted = await checkIdempotency(idempotencyKey);
+  if (alreadyExecuted) {
+    return await getCachedResult(idempotencyKey);
+  }
+  
+  // 3. 熔断检查
+  const circuitState = getCircuitState(task.agentName);
+  if (circuitState === CircuitState.OPEN) {
+    return {
+      taskId: task.taskId,
+      agentName: task.agentName,
+      success: false,
+      error: {
+        code: "CIRCUIT_OPEN",
+        message: \`Agent \${task.agentName} 已熔断\`,
+        severity: "HIGH",
+        retryable: false
+      },
+      durationMs: Date.now() - startTime,
+      retryCount: 0,
+      usedDegradedData: false,
+      confidence: 0,
+      executedAt: new Date().toISOString() as ISOTimestamp
+    };
+  }
+  
+  // 4. 执行任务（带重试）
+  const result = await executeWithRetry(task, ctx);
+  
+  // 5. 记录执行结果（用于熔断统计）
+  recordExecution(task.agentName, result.success);
+  
+  // 6. 保存幂等结果
+  await saveIdempotencyResult(idempotencyKey, result);
+  
+  return result;
+}`,} )
+      )
+    )
+  );
+
+  const renderIdempotency = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "4.2 幂等机制" )
+
+      , _react2.default.createElement(Section, { title: "幂等键生成规则",}
+        , _react2.default.createElement(Alert, { type: "info", title: "设计目标",}, "确保相同的请求在批次内只执行一次，支持安全重试。"
+
+        )
+        , _react2.default.createElement(CodeBlock, { id: "idempotency-key", title: "router/idempotency.ts", code: `/**
+ * 生成幂等键
+ * 
+ * 格式: {batchId}:{agentName}:{storeId}:{logicalTime}
+ * 
+ * 设计考量：
+ * 1. 包含batchId: 不同批次的相同请求是不同的
+ * 2. 包含agentName: 同一批次不同Agent是不同的
+ * 3. 包含storeId: 同一Agent不同门店是不同的
+ * 4. 包含logicalTime: 额外保障，防止时间错乱
+ */
+function generateIdempotencyKey(
+  ctx: CoordinationContext,
+  agentName: string,
+  storeId: StoreId
+): string {
+  return \`\${ctx.batchId}:\${agentName}:\${storeId}:\${ctx.logicalTime}\`;
+}
+
+// 示例:
+// "B20260107143000_A1B2:demand:S001234:2026-01-07T14:30:00.000Z"
+
+/**
+ * 检查幂等性
+ */
+async function checkIdempotency(key: string): Promise<boolean> {
+  // 使用Redis检查
+  const exists = await redis.exists(\`idempotency:\${key}\`);
+  return exists === 1;
+}
+
+/**
+ * 保存幂等结果
+ */
+async function saveIdempotencyResult(
+  key: string, 
+  result: AgentResult
+): Promise<void> {
+  // 设置TTL为24小时
+  const ttl = 24 * 60 * 60;
+  await redis.setex(
+    \`idempotency:\${key}\`,
+    ttl,
+    JSON.stringify(result)
+  );
+}
+
+/**
+ * 获取缓存的结果
+ */
+async function getCachedResult(key: string): Promise<AgentResult> {
+  const cached = await redis.get(\`idempotency:\${key}\`);
+  if (!cached) {
+    throw new Error(\`Idempotency cache miss: \${key}\`);
+  }
+  return JSON.parse(cached);
+}`,} )
+      )
+    )
+  );
+
+  const renderCircuit = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "4.3 熔断器" )
+
+      , _react2.default.createElement(Section, { title: "状态转换图",}
+        , _react2.default.createElement('div', { className: "bg-gray-950 rounded-lg border border-gray-700 p-6 font-mono text-xs"      ,}
+          , _react2.default.createElement('pre', { className: "text-gray-300",}, `
+                    失败率 >= threshold
+            ┌─────────────────────────────┐
+            │                             │
+            ▼                             │
+       ┌─────────┐                   ┌─────────┐
+       │  OPEN   │◄──────────────────│ CLOSED  │
+       └────┬────┘   单次失败        └────▲────┘
+            │                             │
+            │ coolDown后                  │ 连续成功 >= required
+            │                             │
+            ▼                             │
+       ┌─────────┐                        │
+       │HALF_OPEN│────────────────────────┘
+       └─────────┘
+            │
+            │ 单次失败
+            ▼
+       回到 OPEN
+
+状态说明：
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CLOSED    : 正常状态，所有请求通过
+OPEN      : 熔断状态，所有请求被拒绝
+HALF_OPEN : 试探状态，允许少量请求测试
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`)
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "熔断器配置",}
+        , _react2.default.createElement(CodeBlock, { id: "circuit-config", title: "router/circuit-breaker.ts", code: `/**
+ * 熔断器配置
+ */
+interface CircuitBreakerConfig {
+  /** 统计窗口大小（请求数） */
+  windowSize: number;           // 默认: 20
+  
+  /** 触发熔断的失败率阈值 */
+  failureRateThreshold: number; // 默认: 0.5 (50%)
+  
+  /** 熔断冷却时间（毫秒） */
+  coolDownMs: number;           // 默认: 300000 (5分钟)
+  
+  /** 半开状态允许的试探请求数 */
+  halfOpenAttempts: number;     // 默认: 3
+  
+  /** 恢复所需的连续成功次数 */
+  recoveryThreshold: number;    // 默认: 2
+}
+
+// 默认配置
+const defaultCircuitConfig: CircuitBreakerConfig = {
+  windowSize: 20,
+  failureRateThreshold: 0.5,
+  coolDownMs: 300000,
+  halfOpenAttempts: 3,
+  recoveryThreshold: 2
+};
+
+/**
+ * 熔断器实现
+ */
+class CircuitBreaker {
+  private state: CircuitState = CircuitState.CLOSED;
+  private failureCount: number = 0;
+  private successCount: number = 0;
+  private lastFailureTime?: number;
+  private halfOpenSuccessCount: number = 0;
+  
+  constructor(
+    private readonly name: string,
+    private readonly config: CircuitBreakerConfig
+  ) {}
+  
+  /**
+   * 检查是否允许请求通过
+   */
+  allowRequest(): boolean {
+    switch (this.state) {
+      case CircuitState.CLOSED:
+        return true;
+        
+      case CircuitState.OPEN:
+        // 检查是否已过冷却期
+        if (this.shouldAttemptReset()) {
+          this.transitionTo(CircuitState.HALF_OPEN);
+          return true;
+        }
+        return false;
+        
+      case CircuitState.HALF_OPEN:
+        // 半开状态，限制并发
+        return this.halfOpenSuccessCount < this.config.halfOpenAttempts;
+    }
+  }
+  
+  /**
+   * 记录成功
+   */
+  recordSuccess(): void {
+    this.successCount++;
+    
+    if (this.state === CircuitState.HALF_OPEN) {
+      this.halfOpenSuccessCount++;
+      if (this.halfOpenSuccessCount >= this.config.recoveryThreshold) {
+        this.transitionTo(CircuitState.CLOSED);
+      }
+    }
+  }
+  
+  /**
+   * 记录失败
+   */
+  recordFailure(): void {
+    this.failureCount++;
+    this.lastFailureTime = Date.now();
+    
+    if (this.state === CircuitState.HALF_OPEN) {
+      // 半开状态下任何失败都回到OPEN
+      this.transitionTo(CircuitState.OPEN);
+    } else if (this.state === CircuitState.CLOSED) {
+      // 检查是否需要熔断
+      if (this.shouldTrip()) {
+        this.transitionTo(CircuitState.OPEN);
+      }
+    }
+  }
+  
+  private shouldTrip(): boolean {
+    const total = this.failureCount + this.successCount;
+    if (total < this.config.windowSize) return false;
+    
+    const failureRate = this.failureCount / total;
+    return failureRate >= this.config.failureRateThreshold;
+  }
+  
+  private shouldAttemptReset(): boolean {
+    if (!this.lastFailureTime) return true;
+    return Date.now() - this.lastFailureTime >= this.config.coolDownMs;
+  }
+  
+  private transitionTo(newState: CircuitState): void {
+    logger.info(\`CircuitBreaker[\${this.name}] \${this.state} -> \${newState}\`);
+    this.state = newState;
+    
+    if (newState === CircuitState.CLOSED) {
+      this.resetCounters();
+    } else if (newState === CircuitState.HALF_OPEN) {
+      this.halfOpenSuccessCount = 0;
+    }
+  }
+  
+  private resetCounters(): void {
+    this.failureCount = 0;
+    this.successCount = 0;
+    this.halfOpenSuccessCount = 0;
+  }
+}`,} )
+      )
+    )
+  );
+
+  const renderRetry = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "4.4 重试策略" )
+
+      , _react2.default.createElement(Section, { title: "重试配置",}
+        , _react2.default.createElement(CodeBlock, { id: "retry-config", title: "router/retry.ts", code: `/**
+ * 重试策略配置
+ */
+interface RetryPolicy {
+  /** 最大重试次数 */
+  maxRetries: number;               // 默认: 3
+  
+  /** 基础延迟时间（毫秒） */
+  baseDelayMs: number;              // 默认: 1000
+  
+  /** 退避策略 */
+  backoffStrategy: "FIXED" | "EXPONENTIAL" | "LINEAR";
+  
+  /** 最大延迟时间（毫秒） */
+  maxDelayMs: number;               // 默认: 30000
+  
+  /** 可重试的错误类型 */
+  retryableErrors: string[];
+  
+  /** 不可重试的错误类型 */
+  nonRetryableErrors: string[];
+}
+
+// 默认配置
+const defaultRetryPolicy: RetryPolicy = {
+  maxRetries: 3,
+  baseDelayMs: 1000,
+  backoffStrategy: "EXPONENTIAL",
+  maxDelayMs: 30000,
+  retryableErrors: [
+    "TIMEOUT",
+    "NETWORK_ERROR",
+    "RATE_LIMITED",
+    "SERVICE_UNAVAILABLE"
+  ],
+  nonRetryableErrors: [
+    "VALIDATION_ERROR",
+    "AUTH_ERROR",
+    "BUSINESS_LOGIC_ERROR",
+    "BAD_CONTEXT_TIME"
+  ]
+};
+
+/**
+ * 计算延迟时间
+ */
+function calculateDelay(
+  attempt: number, 
+  policy: RetryPolicy
+): number {
+  let delay: number;
+  
+  switch (policy.backoffStrategy) {
+    case "FIXED":
+      delay = policy.baseDelayMs;
+      break;
+    case "LINEAR":
+      delay = policy.baseDelayMs * attempt;
+      break;
+    case "EXPONENTIAL":
+      delay = policy.baseDelayMs * Math.pow(2, attempt - 1);
+      break;
+  }
+  
+  // 添加抖动（±10%）
+  const jitter = delay * 0.1 * (Math.random() * 2 - 1);
+  delay = Math.min(delay + jitter, policy.maxDelayMs);
+  
+  return Math.round(delay);
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "错误分类",}
+        , _react2.default.createElement(Table, { 
+          headers: ['错误类型', '可重试', '处理方式', '示例'],
+          rows: [
+            ['TIMEOUT', '是', '指数退避重试', '请求超时'],
+            ['NETWORK_ERROR', '是', '指数退避重试', '连接失败'],
+            ['RATE_LIMITED', '是', '等待后重试', '429 Too Many Requests'],
+            ['SERVICE_UNAVAILABLE', '是', '指数退避重试', '503 Service Unavailable'],
+            ['DATA_QUALITY', '否', '降级处理', '数据不完整'],
+            ['VALIDATION_ERROR', '否', '直接失败', '参数校验失败'],
+            ['BUSINESS_LOGIC_ERROR', '否', '直接失败', '业务规则冲突'],
+            ['AUTH_ERROR', '否', '直接失败', '认证失败']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "重试执行器",}
+        , _react2.default.createElement(CodeBlock, { id: "retry-executor", title: "router/retry-executor.ts", code: `/**
+ * 带重试的执行器
+ */
+async function executeWithRetry(
+  task: AgentTask,
+  ctx: CoordinationContext,
+  policy: RetryPolicy = defaultRetryPolicy
+): Promise<AgentResult> {
+  let lastError: AgentError | undefined;
+  let attempt = 0;
+  
+  while (attempt <= policy.maxRetries) {
+    attempt++;
+    
+    try {
+      // 执行Agent
+      const result = await executeAgent(task, ctx);
+      
+      // 成功则返回
+      if (result.success) {
+        return {
+          ...result,
+          retryCount: attempt - 1
+        };
+      }
+      
+      // 失败但可重试
+      if (result.error && isRetryable(result.error, policy)) {
+        lastError = result.error;
+        
+        if (attempt <= policy.maxRetries) {
+          const delay = calculateDelay(attempt, policy);
+          logger.warn(\`Retrying task \${task.taskId}, attempt \${attempt}, delay \${delay}ms\`);
+          await sleep(delay);
+          continue;
+        }
+      }
+      
+      // 失败且不可重试
+      return {
+        ...result,
+        retryCount: attempt - 1
+      };
+      
+    } catch (error) {
+      lastError = toAgentError(error);
+      
+      if (!isRetryable(lastError, policy) || attempt > policy.maxRetries) {
+        return createFailureResult(task, lastError, attempt - 1);
+      }
+      
+      const delay = calculateDelay(attempt, policy);
+      await sleep(delay);
+    }
+  }
+  
+  // 达到最大重试次数
+  return createFailureResult(task, lastError!, attempt - 1);
+}
+
+function isRetryable(error: AgentError, policy: RetryPolicy): boolean {
+  if (policy.nonRetryableErrors.includes(error.code)) {
+    return false;
+  }
+  return error.retryable || policy.retryableErrors.includes(error.code);
+}`,} )
+      )
+    )
+  );
+
+  const renderDegradeOverview = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "5.1 DegradationService 概述"  )
+
+      , _react2.default.createElement(Alert, { type: "error", title: "平台公共组件",}, "所有外部数据加载必须通过 DegradationService，禁止直接访问数据源。 这是系统容错能力的核心保障。"
+
+
+      )
+
+      , _react2.default.createElement(Section, { title: "设计目标",}
+        , _react2.default.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 gap-4"   ,}
+          , [
+            { title: '统一入口', desc: '所有外部数据通过单一服务加载' },
+            { title: '质量评估', desc: '自动评估数据的时效性和完整性' },
+            { title: '渐进降级', desc: 'OK → WARN → FALLBACK → REJECT' },
+            { title: '透明追踪', desc: '记录所有降级决策，便于审计' }
+          ].map((item, i) => (
+            _react2.default.createElement('div', { key: i, className: "bg-gray-800 border border-gray-700 rounded-lg p-4"    ,}
+              , _react2.default.createElement('h4', { className: "font-semibold text-cyan-400" ,}, item.title)
+              , _react2.default.createElement('p', { className: "text-sm text-gray-400 mt-1"  ,}, item.desc)
+            )
+          ))
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "数据源分类",}
+        , _react2.default.createElement(Table, { 
+          headers: ['类型', '数据源', '缺失处理', '超时阈值'],
+          rows: [
+            ['必需（Critical）', 'inventory, sales, supply', 'REJECT', '15分钟'],
+            ['可选（Optional）', 'weather, events, competitor', '降级继续', '1小时']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderDegradeInterface = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "5.2 接口定义" )
+
+      , _react2.default.createElement(Section, { title: "核心接口",}
+        , _react2.default.createElement(CodeBlock, { id: "degrade-interface", title: "degradation/interface.ts", code: `/**
+ * 降级服务接口
+ */
+interface IDegradationService {
+  /**
+   * 加载数据快照
+   * 这是最核心的方法
+   * 
+   * @template T 数据类型
+   * @param source 数据源名称
+   * @param logicalTime 逻辑时间
+   * @param opts 加载选项
+   * @returns 降级快照
+   */
+  loadSnapshot<T>(
+    source: string,
+    logicalTime: ISOTimestamp,
+    opts: LoadOptions
+  ): Promise<DegradedSnapshot<T>>;
+  
+  /**
+   * 检查数据源状态（不加载数据）
+   */
+  checkSource(
+    source: string,
+    logicalTime: ISOTimestamp,
+    opts: { maxSkewMs: number }
+  ): Promise<SourceStatus>;
+  
+  /**
+   * 批量加载多个数据源
+   */
+  loadMultiple(
+    requests: Array<{
+      source: string;
+      opts: LoadOptions;
+    }>,
+    logicalTime: ISOTimestamp
+  ): Promise<Map<string, DegradedSnapshot<unknown>>>;
+}
+
+/**
+ * 加载选项
+ */
+interface LoadOptions {
+  /** 是否为必需数据源 */
+  required: boolean;
+  
+  /** 最大允许的时间偏移（毫秒） */
+  maxSkewMs: number;
+  
+  /** 最小完整度要求 (0~1) */
+  minCompleteness: number;  // 默认 0.8
+  
+  /** 降级策略 */
+  fallbackPolicy?: FallbackPolicy;
+  
+  /** 自定义超时（毫秒） */
+  timeoutMs?: number;
+}
+
+/**
+ * 降级策略
+ */
+interface FallbackPolicy {
+  /** 降级类型 */
+  kind: "LATEST_BEFORE" | "T_MINUS_1D" | "T_MINUS_7D" | "CACHE" | "DEFAULT_VALUE";
+  
+  /** 最大降级数据年龄（天） */
+  maxAgeDays?: number;
+  
+  /** 默认值（用于 DEFAULT_VALUE 类型） */
+  defaultValue?: unknown;
+  
+  /** 是否允许空值 */
+  allowEmpty?: boolean;
+}
+
+interface SourceStatus {
+  /** 数据源名称 */
+  source: string;
+  
+  /** 是否可用 */
+  available: boolean;
+  
+  /** 数据时间 */
+  dataAsOf?: ISOTimestamp;
+  
+  /** 时间偏移（毫秒） */
+  skewMs?: number;
+  
+  /** 完整度评分 */
+  completeness?: number;
+  
+  /** 错误信息 */
+  error?: string;
+}`,} )
+      )
+    )
+  );
+
+  const renderDegradePolicy = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "5.3 降级策略" )
+
+      , _react2.default.createElement(Section, { title: "降级决策矩阵",}
+        , _react2.default.createElement(Table, { 
+          headers: ['条件', '动作', '置信度惩罚', '说明'],
+          rows: [
+            ['skew ≤ max && completeness ≥ min', 'OK', '0%', '数据完全正常'],
+            ['skew ≤ max×1.5 && completeness ≥ min×0.8', 'WARN', '10%', '轻微超标，继续处理'],
+            ['有可用降级数据', 'FALLBACK', '20-40%', '使用备用数据'],
+            ['required=true && 无数据', 'REJECT', '100%', '关键数据缺失，拒绝处理'],
+            ['required=false && 无数据', 'FALLBACK(default)', '30%', '使用默认值']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "降级决策逻辑",}
+        , _react2.default.createElement(CodeBlock, { id: "degrade-decision", title: "degradation/decision.ts", code: `/**
+ * 降级决策核心逻辑
+ */
+function makeDecision<T>(
+  source: string,
+  data: T | null,
+  dataAsOf: ISOTimestamp | null,
+  logicalTime: ISOTimestamp,
+  opts: LoadOptions
+): DegradedSnapshot<T> {
+  const warnings: string[] = [];
+  
+  // 1. 计算时间偏移
+  const skewMs = dataAsOf 
+    ? Math.abs(new Date(logicalTime).getTime() - new Date(dataAsOf).getTime())
+    : Infinity;
+  
+  // 2. 计算完整度
+  const completenessScore = calculateCompleteness(data);
+  
+  // 3. 决策逻辑
+  let action: DegradationAction;
+  let confidencePenalty: number;
+  let finalData: T | undefined = data ?? undefined;
+  let fallbackFrom: string | undefined;
+  
+  // Case 1: 数据完全正常
+  if (data !== null && skewMs <= opts.maxSkewMs && completenessScore >= opts.minCompleteness) {
+    action = DegradationAction.OK;
+    confidencePenalty = 0;
+  }
+  // Case 2: 轻微超标
+  else if (data !== null && skewMs <= opts.maxSkewMs * 1.5 && completenessScore >= opts.minCompleteness * 0.8) {
+    action = DegradationAction.WARN;
+    confidencePenalty = 0.1;
+    warnings.push(\`数据略有延迟: skew=\${skewMs}ms, completeness=\${completenessScore}\`);
+  }
+  // Case 3: 需要降级
+  else if (opts.fallbackPolicy) {
+    const fallbackResult = getFallback<T>(source, logicalTime, opts.fallbackPolicy);
+    
+    if (fallbackResult.success) {
+      action = DegradationAction.FALLBACK;
+      confidencePenalty = calculateFallbackPenalty(opts.fallbackPolicy);
+      finalData = fallbackResult.data;
+      fallbackFrom = fallbackResult.source;
+      warnings.push(\`使用降级数据: \${fallbackFrom}\`);
+    } else if (opts.required) {
+      action = DegradationAction.REJECT;
+      confidencePenalty = 1;
+      finalData = undefined;
+      warnings.push(\`关键数据源 \${source} 不可用且无降级数据\`);
+    } else {
+      action = DegradationAction.FALLBACK;
+      confidencePenalty = 0.3;
+      finalData = opts.fallbackPolicy.defaultValue as T;
+      fallbackFrom = "default_value";
+      warnings.push(\`使用默认值\`);
+    }
+  }
+  // Case 4: 无降级策略
+  else if (opts.required) {
+    action = DegradationAction.REJECT;
+    confidencePenalty = 1;
+    finalData = undefined;
+    warnings.push(\`关键数据源 \${source} 不可用\`);
+  } else {
+    action = DegradationAction.WARN;
+    confidencePenalty = 0.2;
+    warnings.push(\`可选数据源 \${source} 不可用，将被忽略\`);
+  }
+  
+  return {
+    action,
+    source,
+    skewMs: skewMs === Infinity ? -1 : skewMs,
+    completenessScore,
+    confidencePenalty,
+    data: finalData,
+    fallbackFrom,
+    warnings,
+    loadedAt: new Date().toISOString() as ISOTimestamp,
+    dataAsOf: dataAsOf ?? undefined
+  };
+}
+
+function calculateFallbackPenalty(policy: FallbackPolicy): number {
+  switch (policy.kind) {
+    case "LATEST_BEFORE": return 0.2;
+    case "T_MINUS_1D": return 0.3;
+    case "T_MINUS_7D": return 0.4;
+    case "CACHE": return 0.25;
+    case "DEFAULT_VALUE": return 0.35;
+    default: return 0.3;
+  }
+}`,} )
+      )
+    )
+  );
+
+  const renderDegradeUsage = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "5.4 使用规范" )
+
+      , _react2.default.createElement(Section, { title: "正确用法",}
+        , _react2.default.createElement(CodeBlock, { id: "degrade-correct", title: "正确示例", code: `// ✅ 正确：通过DegradationService加载必需数据
+const inventorySnapshot = await degradationService.loadSnapshot<InventoryData>(
+  'inventory',
+  ctx.logicalTime,
+  {
+    required: true,
+    maxSkewMs: 900000,  // 15分钟
+    minCompleteness: 0.95
+  }
+);
+
+// 检查结果
+if (inventorySnapshot.action === DegradationAction.REJECT) {
+  return fail({
+    code: "CRITICAL_SOURCE_MISSING",
+    message: "库存数据不可用",
+    severity: "CRITICAL",
+    retryable: false
+  });
+}
+
+// 记录到上下文
+ctx.degradationSummary.add(inventorySnapshot);
+
+// ✅ 正确：加载可选数据带降级策略
+const weatherSnapshot = await degradationService.loadSnapshot<WeatherData>(
+  'weather',
+  ctx.logicalTime,
+  {
+    required: false,
+    maxSkewMs: 3600000,  // 1小时
+    minCompleteness: 0.7,
+    fallbackPolicy: {
+      kind: 'T_MINUS_1D',
+      maxAgeDays: 3
+    }
+  }
+);
+
+// 可选数据即使FALLBACK也可以继续
+if (weatherSnapshot.action !== DegradationAction.REJECT) {
+  const weatherSignal = processWeather(weatherSnapshot.data);
+} else {
+  // 使用中性信号
+  const weatherSignal = createNeutralSignal();
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "错误用法",}
+        , _react2.default.createElement(CodeBlock, { id: "degrade-wrong", title: "错误示例（禁止）", code: `// ❌ 错误：直接访问数据存储
+const inventory = await inventoryStore.getLatest();
+
+// ❌ 错误：使用系统当前时间而非logicalTime
+const data = await service.getData(new Date());
+
+// ❌ 错误：不检查降级结果
+const snapshot = await degradationService.loadSnapshot(...);
+doSomething(snapshot.data);  // data可能为undefined！
+
+// ❌ 错误：不记录降级信息
+const snapshot = await degradationService.loadSnapshot(...);
+// 忘记调用 ctx.degradationSummary.add(snapshot);
+
+// ❌ 错误：required数据FALLBACK时不降低置信度
+if (snapshot.action === DegradationAction.FALLBACK) {
+  // 直接使用，没有考虑置信度惩罚
+  return processData(snapshot.data);
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "使用清单",}
+        , _react2.default.createElement('div', { className: "space-y-2",}
+          , [
+            '所有外部数据加载必须通过 degradationService.loadSnapshot()',
+            '必须使用 ctx.logicalTime 作为时间参数',
+            '必须检查返回的 action 字段',
+            '必须调用 ctx.degradationSummary.add() 记录降级信息',
+            '必须在决策时考虑 confidencePenalty',
+            'REJECT 必须阻止后续处理并返回错误'
+          ].map((item, i) => (
+            _react2.default.createElement('div', { key: i, className: "flex items-center gap-2 p-2 bg-gray-800/50 rounded"     ,}
+              , _react2.default.createElement(_lucidereact.CheckCircle, { size: 16, className: "text-green-400 flex-shrink-0" ,} )
+              , _react2.default.createElement('span', { className: "text-gray-300 text-sm" ,}, item)
+            )
+          ))
+        )
+      )
+    )
+  );
+
+  const renderOrderDOS = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "9.2 动态DOS计算" )
+
+      , _react2.default.createElement(Section, { title: "DOS计算公式",}
+        , _react2.default.createElement(Alert, { type: "info", title: "DOS (Days of Supply)"   ,}, "库存可销天数 = 当前库存 / 日均销量。 动态DOS根据温层、周转率、保质期动态调整目标值。"
+
+
+        )
+        , _react2.default.createElement(CodeBlock, { id: "dos-calc", title: "order/dos-calculator.ts", code: `/**
+ * 动态DOS配置
+ */
+interface DynamicDOSConfig {
+  /** 按温层的基础天数 */
+  baseDaysByZone: Record<TemperatureZone, number>;
+  
+  /** 周转率系数 */
+  velocityFactor: {
+    low: number;   // 低周转商品的系数
+    mid: number;   // 中周转商品的系数
+    high: number;  // 高周转商品的系数
+  };
+  
+  /** 保质期系数（DOS不超过保质期的此比例） */
+  shelfLifeFactor: number;
+  
+  /** 最小/最大DOS */
+  minDOS: number;
+  maxDOS: number;
+}
+
+// 默认配置
+const defaultDOSConfig: DynamicDOSConfig = {
+  baseDaysByZone: {
+    [TemperatureZone.AMBIENT]: 14,   // 常温：14天
+    [TemperatureZone.CHILLED]: 7,    // 冷藏：7天
+    [TemperatureZone.FROZEN]: 21,    // 冷冻：21天
+    [TemperatureZone.HEATED]: 1      // 加热：1天
+  },
+  velocityFactor: {
+    low: 0.8,    // 低周转：减少20%
+    mid: 1.0,    // 中周转：标准
+    high: 1.2    // 高周转：增加20%
+  },
+  shelfLifeFactor: 0.4,  // DOS不超过保质期的40%
+  minDOS: 1,
+  maxDOS: 30
+};
+
+/**
+ * 计算动态DOS
+ */
+function calculateDynamicDOS(
+  sku: Sku,
+  velocityCategory: VelocityCategory,
+  config: DynamicDOSConfig = defaultDOSConfig
+): number {
+  // 1. 获取温层基础天数
+  const baseDays = config.baseDaysByZone[sku.temperatureZone];
+  
+  // 2. 应用周转率系数
+  const velocityKey = velocityCategory.toLowerCase() as keyof typeof config.velocityFactor;
+  const velocityFactor = config.velocityFactor[velocityKey];
+  let dos = baseDays * velocityFactor;
+  
+  // 3. 保质期上限
+  const shelfLifeLimit = sku.shelfLifeDays * config.shelfLifeFactor;
+  dos = Math.min(dos, shelfLifeLimit);
+  
+  // 4. 边界约束
+  dos = Math.max(config.minDOS, Math.min(config.maxDOS, dos));
+  
+  return Math.round(dos);
+}
+
+// 使用示例
+const sku = {
+  skuId: "SKU0000012345" as SkuId,
+  temperatureZone: TemperatureZone.CHILLED,
+  shelfLifeDays: 14
+};
+
+const dos = calculateDynamicDOS(sku, VelocityCategory.HIGH);
+// 结果: min(7 * 1.2, 14 * 0.4) = min(8.4, 5.6) = 5.6 → 6天`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "DOS计算示例",}
+        , _react2.default.createElement(Table, { 
+          headers: ['温层', '周转率', '保质期', '计算过程', '最终DOS'],
+          rows: [
+            ['常温', '低', '180天', 'min(14×0.8, 180×0.4) = min(11.2, 72)', '11天'],
+            ['常温', '高', '180天', 'min(14×1.2, 180×0.4) = min(16.8, 72)', '17天'],
+            ['冷藏', '中', '14天', 'min(7×1.0, 14×0.4) = min(7, 5.6)', '6天'],
+            ['冷藏', '高', '7天', 'min(7×1.2, 7×0.4) = min(8.4, 2.8)', '3天'],
+            ['冷冻', '低', '365天', 'min(21×0.8, 365×0.4) = min(16.8, 146)', '17天'],
+            ['加热', '高', '1天', 'min(1×1.2, 1×0.4) = min(1.2, 0.4)', '1天']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderOrderGuard = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "9.4 数据质量守卫" )
+
+      , _react2.default.createElement(Alert, { type: "error", title: "关键安全规则",}, "当 avgDailyDemand ≤ 0 时，禁止直接放行大单。 必须限制订单量并触发人工审核。"
+
+
+      )
+
+      , _react2.default.createElement(Section, { title: "守卫配置",}
+        , _react2.default.createElement(CodeBlock, { id: "guard-config", title: "order/guard-config.ts", code: `/**
+ * 数据质量守卫配置
+ */
+interface DataQualityGuardConfig {
+  /** 无需求数据时的最大订购量 */
+  maxQuantityWhenNoDemand: number;    // 默认: 10
+  
+  /** 自动审批所需的最低置信度 */
+  minConfidenceForAutoApprove: number; // 默认: 0.6
+  
+  /** 低置信度时的最大DOS */
+  lowConfidenceMaxDOS: number;         // 默认: 7
+  
+  /** 异常倍数阈值（订单量超过日销的倍数） */
+  abnormalMultiplier: number;          // 默认: 10
+  
+  /** 需要审核的最小金额（分） */
+  reviewThresholdAmount: MoneyInCents; // 默认: 100000 (1000元)
+}
+
+const defaultGuardConfig: DataQualityGuardConfig = {
+  maxQuantityWhenNoDemand: 10,
+  minConfidenceForAutoApprove: 0.6,
+  lowConfidenceMaxDOS: 7,
+  abnormalMultiplier: 10,
+  reviewThresholdAmount: 100000 as MoneyInCents
+};`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "守卫逻辑",}
+        , _react2.default.createElement(CodeBlock, { id: "guard-impl", title: "order/data-quality-guard.ts", code: `/**
+ * 数据质量守卫结果
+ */
+interface DataQualityGuardResult {
+  /** 处理动作 */
+  action: "ALLOW" | "LIMIT" | "REVIEW" | "REJECT";
+  
+  /** 允许的数量 */
+  allowedQuantity: number;
+  
+  /** 原因说明 */
+  reason: string;
+  
+  /** 详细检查结果 */
+  checks: Array<{
+    name: string;
+    passed: boolean;
+    message: string;
+  }>;
+}
+
+/**
+ * 应用数据质量守卫
+ */
+function applyDataQualityGuard(
+  line: OrderLine,
+  demandForecast: DemandForecast,
+  config: DataQualityGuardConfig = defaultGuardConfig
+): DataQualityGuardResult {
+  const checks: DataQualityGuardResult['checks'] = [];
+  const { avgDailyDemand, confidence } = demandForecast;
+  
+  // 检查1: 日销数据有效性
+  if (avgDailyDemand <= 0) {
+    checks.push({
+      name: "日销数据检查",
+      passed: false,
+      message: \`日销数据为0或负数: \${avgDailyDemand}\`
+    });
+    
+    if (line.quantity > config.maxQuantityWhenNoDemand) {
+      return {
+        action: "REVIEW",
+        allowedQuantity: config.maxQuantityWhenNoDemand,
+        reason: \`日销数据为0，订单量\${line.quantity}超过阈值\${config.maxQuantityWhenNoDemand}，需人工审核\`,
+        checks
+      };
+    }
+  } else {
+    checks.push({
+      name: "日销数据检查",
+      passed: true,
+      message: \`日销正常: \${avgDailyDemand}\`
+    });
+  }
+  
+  // 检查2: 置信度检查
+  if (confidence < config.minConfidenceForAutoApprove) {
+    checks.push({
+      name: "置信度检查",
+      passed: false,
+      message: \`置信度\${confidence}低于阈值\${config.minConfidenceForAutoApprove}\`
+    });
+    
+    const maxAllowed = Math.ceil(avgDailyDemand * config.lowConfidenceMaxDOS);
+    if (line.quantity > maxAllowed) {
+      return {
+        action: "REVIEW",
+        allowedQuantity: maxAllowed,
+        reason: \`预测置信度低(\${confidence})，订单量\${line.quantity}超过限制\${maxAllowed}，建议人工审核\`,
+        checks
+      };
+    }
+  } else {
+    checks.push({
+      name: "置信度检查",
+      passed: true,
+      message: \`置信度正常: \${confidence}\`
+    });
+  }
+  
+  // 检查3: 异常倍数检查
+  if (avgDailyDemand > 0) {
+    const multiplier = line.quantity / avgDailyDemand;
+    if (multiplier > config.abnormalMultiplier) {
+      checks.push({
+        name: "异常倍数检查",
+        passed: false,
+        message: \`订单量是日销的\${multiplier.toFixed(1)}倍，超过阈值\${config.abnormalMultiplier}\`
+      });
+      
+      return {
+        action: "REVIEW",
+        allowedQuantity: Math.ceil(avgDailyDemand * config.abnormalMultiplier),
+        reason: \`订单量异常偏高，需人工审核\`,
+        checks
+      };
+    }
+  }
+  
+  // 所有检查通过
+  return {
+    action: "ALLOW",
+    allowedQuantity: line.quantity,
+    reason: "通过所有数据质量检查",
+    checks
+  };
+}`,} )
+      )
+    )
+  );
+
+  const renderApiSpec = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "11.1 API规范" )
+
+      , _react2.default.createElement(Section, { title: "API端点列表",}
+        , _react2.default.createElement(Table, { 
+          headers: ['方法', '路径', '描述', '认证'],
+          rows: [
+            ['POST', '/api/v1/batch', '提交批次处理请求', 'Bearer Token'],
+            ['GET', '/api/v1/batch/{batchId}', '查询批次状态', 'Bearer Token'],
+            ['GET', '/api/v1/batch/{batchId}/result', '获取批次结果', 'Bearer Token'],
+            ['POST', '/api/v1/batch/{batchId}/cancel', '取消批次处理', 'Bearer Token'],
+            ['GET', '/api/v1/health', '健康检查', '无'],
+            ['GET', '/api/v1/metrics', 'Prometheus指标', '无']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "请求示例",}
+        , _react2.default.createElement(CodeBlock, { id: "api-request", title: "POST /api/v1/batch" , code: `// 请求
+POST /api/v1/batch HTTP/1.1
+Host: dscm-api.example.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+Content-Type: application/json
+
+{
+  "storeIds": ["S001234", "S001235"],
+  "requestTime": "2026-01-07T14:30:00.000Z",
+  "options": {
+    "runMode": "NORMAL",
+    "priority": 1,
+    "timeoutMs": 300000
+  },
+  "requestId": "req_unique_12345"
+}`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "响应示例",}
+        , _react2.default.createElement(CodeBlock, { id: "api-response", title: "成功响应", code: `// 响应
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "batchId": "B20260107143000_A1B2",
+  
+  // 版本信息（必填）
+  "effectiveSchemaVersion": "1.2",
+  "configVersion": "cfg_2026-01-07_01",
+  "ruleVersion": "rule_6.4.0",
+  "configChecksum": "a1b2c3d4e5f6g7h8",
+  
+  "status": "SUCCESS",
+  "logicalTime": "2026-01-07T14:30:00.000Z",
+  
+  // 降级汇总（必填）
+  "degradationSummary": {
+    "totalSources": 5,
+    "degradedCount": 1,
+    "bySource": {
+      "inventory": { "action": "OK", "skewMs": 5000, "completenessScore": 0.99, "confidencePenalty": 0 },
+      "weather": { "action": "WARN", "skewMs": 1800000, "completenessScore": 0.85, "confidencePenalty": 0.1 }
+    },
+    "totalConfidencePenalty": 0.1,
+    "worstAction": "WARN"
+  },
+  
+  // 置信度（必填）
+  "confidenceScore": 0.85,
+  "confidenceReasons": ["天气数据略有延迟"],
+  
+  // 结果
+  "orders": [...],
+  "processedStoreCount": 2,
+  
+  // 时间
+  "startedAt": "2026-01-07T14:30:00.000Z",
+  "completedAt": "2026-01-07T14:30:05.123Z",
+  "durationMs": 5123
+}`,} )
+      )
+    )
+  );
+
+  const renderApiErrors = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "11.2 错误码" )
+
+      , _react2.default.createElement(Section, { title: "错误码分类",}
+        , _react2.default.createElement(Table, { 
+          headers: ['错误码', 'HTTP状态', '说明', '处理建议'],
+          rows: [
+            ['BAD_CONTEXT_TIME', '400', 'Agent时间与批次时间不一致', '检查时间同步逻辑'],
+            ['CRITICAL_SOURCE_MISSING', '503', '关键数据源缺失', '检查数据管道'],
+            ['CRITICAL_SOURCE_STALE', '503', '关键数据源超时', '检查数据刷新'],
+            ['BUDGET_EXCEEDED', '400', '超出硬预算限制', '调整订单量'],
+            ['BUDGET_SOFT_EXCEEDED', '200', '超出软预算限制', '自动进入审核'],
+            ['CIRCUIT_OPEN', '503', 'Agent已熔断', '等待自动恢复'],
+            ['VALIDATION_ERROR', '400', '请求参数校验失败', '检查请求参数'],
+            ['TIMEOUT', '504', '处理超时', '可重试'],
+            ['INTERNAL_ERROR', '500', '内部错误', '联系技术支持']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "错误响应格式",}
+        , _react2.default.createElement(CodeBlock, { id: "error-response", title: "错误响应示例", code: `{
+  "success": false,
+  "error": {
+    "code": "CRITICAL_SOURCE_MISSING",
+    "message": "关键数据源 inventory 不可用",
+    "severity": "CRITICAL",
+    "retryable": false,
+    "context": {
+      "source": "inventory",
+      "expectedMaxSkewMs": 900000,
+      "actualStatus": "NOT_FOUND"
+    },
+    "traceId": "trace_abc123",
+    "timestamp": "2026-01-07T14:30:00.000Z"
+  }
+}`,} )
+      )
+    )
+  );
+
+  const renderMonitor = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "11.3 监控指标" )
+
+      , _react2.default.createElement(Section, { title: "核心指标",}
+        , _react2.default.createElement(Table, { 
+          headers: ['指标名', '类型', '说明', '标签'],
+          rows: [
+            ['dscm_batch_duration_ms', 'Histogram', '批次处理耗时', 'status'],
+            ['dscm_batch_total', 'Counter', '批次处理总数', 'status'],
+            ['dscm_confidence_score', 'Gauge', '整体置信度', 'batch_id'],
+            ['dscm_degradation_count', 'Counter', '降级次数', 'source, action'],
+            ['dscm_circuit_breaker_state', 'Gauge', '熔断状态(0=CLOSED,1=OPEN)', 'agent'],
+            ['dscm_time_skew_ms', 'Gauge', '数据源时间偏移', 'source'],
+            ['dscm_agent_duration_ms', 'Histogram', 'Agent执行耗时', 'agent, success'],
+            ['dscm_order_value_cents', 'Histogram', '订单金额分布', 'store_id'],
+            ['dscm_retry_count', 'Counter', '重试次数', 'agent']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "Prometheus配置",}
+        , _react2.default.createElement(CodeBlock, { id: "prom-config", title: "prometheus.yml", code: `scrape_configs:
+  - job_name: 'dscm'
+    static_configs:
+      - targets: ['dscm-api:9090']
+    metrics_path: '/api/v1/metrics'
+    scrape_interval: 15s`,} )
+      )
+    )
+  );
+
+  const renderAlerts = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "11.4 告警规则" )
+
+      , _react2.default.createElement(Section, { title: "告警配置",}
+        , _react2.default.createElement(CodeBlock, { id: "alert-rules", title: "alerts.yml", code: `groups:
+  - name: dscm_alerts
+    rules:
+      # 置信度过低
+      - alert: DSCMConfidenceLow
+        expr: dscm_confidence_score < 0.7
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "DSCM置信度低于阈值"
+          description: "批次 {{ $labels.batch_id }} 置信度为 {{ $value }}"
+      
+      # 熔断器打开
+      - alert: DSCMCircuitBreakerOpen
+        expr: dscm_circuit_breaker_state == 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Agent {{ $labels.agent }} 已熔断"
+          description: "请检查Agent健康状态"
+      
+      # 关键数据源超时
+      - alert: DSCMCriticalSourceStale
+        expr: dscm_time_skew_ms{source=~"inventory|sales|supply"} > 900000
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "关键数据源 {{ $labels.source }} 数据过期"
+          description: "时间偏移 {{ $value }}ms，超过15分钟阈值"
+      
+      # 批次处理失败率高
+      - alert: DSCMHighFailureRate
+        expr: rate(dscm_batch_total{status="FAILED"}[5m]) / rate(dscm_batch_total[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "DSCM批次失败率过高"
+          description: "失败率 {{ $value | humanizePercentage }}"
+      
+      # 降级过多
+      - alert: DSCMHighDegradationRate
+        expr: rate(dscm_degradation_count{action=~"FALLBACK|REJECT"}[5m]) > 10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "DSCM降级频繁"
+          description: "数据源 {{ $labels.source }} 降级率过高"`,} )
+      )
+
+      , _react2.default.createElement(Section, { title: "告警级别说明",}
+        , _react2.default.createElement(Table, { 
+          headers: ['级别', '响应时间', '通知方式', '示例场景'],
+          rows: [
+            ['critical', '立即', '电话 + 短信 + 钉钉', '关键数据源不可用、系统宕机'],
+            ['warning', '30分钟内', '钉钉 + 邮件', '熔断器打开、置信度低'],
+            ['info', '工作日处理', '邮件', '降级使用备用数据']
+          ],}
+        )
+      )
+    )
+  );
+
+  const renderBestPractices = () => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}, "11.5 最佳实践" )
+
+      , _react2.default.createElement(Section, { title: "开发规范",}
+        , _react2.default.createElement('div', { className: "space-y-4",}
+          , [
+            { title: '时间一致性', items: [
+              '始终使用 ctx.logicalTime，禁止使用 new Date()',
+              '所有Agent入参的时间必须与ctx.logicalTime一致',
+              '时间比较使用ISO字符串比较即可'
+            ]},
+            { title: '数据加载', items: [
+              '必须通过 DegradationService 加载外部数据',
+              '必须检查 DegradedSnapshot.action',
+              '必须记录降级信息到 ctx.degradationSummary'
+            ]},
+            { title: '错误处理', items: [
+              '使用 Result<T, E> 类型而非抛异常',
+              '区分可重试和不可重试错误',
+              '携带足够的上下文信息便于排查'
+            ]},
+            { title: '幂等性', items: [
+              '相同输入必须产生相同输出',
+              '不依赖外部可变状态',
+              '支持安全重试'
+            ]}
+          ].map((section, i) => (
+            _react2.default.createElement('div', { key: i, className: "bg-gray-800 border border-gray-700 rounded-lg p-4"    ,}
+              , _react2.default.createElement('h4', { className: "font-semibold text-cyan-400 mb-3"  ,}, section.title)
+              , _react2.default.createElement('ul', { className: "space-y-2",}
+                , section.items.map((item, j) => (
+                  _react2.default.createElement('li', { key: j, className: "flex items-start gap-2 text-sm"   ,}
+                    , _react2.default.createElement(_lucidereact.CheckCircle, { size: 14, className: "text-green-400 mt-1 flex-shrink-0"  ,} )
+                    , _react2.default.createElement('span', { className: "text-gray-300",}, item)
+                  )
+                ))
+              )
+            )
+          ))
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "性能优化",}
+        , _react2.default.createElement(Table, { 
+          headers: ['场景', '建议', '预期效果'],
+          rows: [
+            ['大批量门店', '使用 dispatchBatch 并行处理', '吞吐量提升3-5倍'],
+            ['数据加载', '使用 loadMultiple 批量加载', '减少网络往返'],
+            ['幂等检查', '使用 Redis Pipeline', '减少Redis调用'],
+            ['日志输出', '异步写入、采样', '降低I/O开销'],
+            ['熔断统计', '使用滑动窗口', '降低内存占用']
+          ],}
+        )
+      )
+
+      , _react2.default.createElement(Section, { title: "排查清单",}
+        , _react2.default.createElement('div', { className: "bg-gray-800 border border-gray-700 rounded-lg p-4"    ,}
+          , _react2.default.createElement('h4', { className: "font-semibold text-cyan-400 mb-3"  ,}, "问题排查步骤")
+          , _react2.default.createElement('ol', { className: "space-y-2 text-sm" ,}
+            , [
+              '查看 batchId 对应的完整日志',
+              '检查 degradationSummary 中各数据源状态',
+              '确认 confidenceScore 和 confidenceReasons',
+              '检查是否有 Agent 熔断',
+              '查看 Prometheus 中的时序指标',
+              '使用 traceId 在 Jaeger 中查看完整链路'
+            ].map((item, i) => (
+              _react2.default.createElement('li', { key: i, className: "flex items-start gap-2"  ,}
+                , _react2.default.createElement('span', { className: "text-cyan-400 font-mono" ,}, i + 1, ".")
+                , _react2.default.createElement('span', { className: "text-gray-300",}, item)
+              )
+            ))
+          )
+        )
+      )
+    )
+  );
+
+  // 简化的内容映射
+  const contentMap = {
+    'overview': renderOverview,
+    'architecture': renderArchitecture,
+    'data-flow': renderDataFlow,
+    'glossary': renderGlossary,
+    'base-types': renderBaseTypes,
+    'enum-types': renderEnumTypes,
+    'context-types': renderContextTypes,
+    'domain-types': renderDomainTypes,
+    'result-types': renderResultTypes,
+    'coordinator': renderCoordinator,
+    'coord-context': renderCoordContextCreate,
+    'coord-validation': renderCoordValidation,
+    'coord-lifecycle': renderCoordLifecycle,
+    'router': renderRouter,
+    'idempotency': renderIdempotency,
+    'circuit': renderCircuit,
+    'retry': renderRetry,
+    'degrade-overview': renderDegradeOverview,
+    'degrade-interface': renderDegradeInterface,
+    'degrade-policy': renderDegradePolicy,
+    'degrade-usage': renderDegradeUsage,
+    'order-dos': renderOrderDOS,
+    'order-guard': renderOrderGuard,
+    'api-spec': renderApiSpec,
+    'api-errors': renderApiErrors,
+    'monitor': renderMonitor,
+    'alerts': renderAlerts,
+    'best-practices': renderBestPractices
+  };
+
+  // 默认内容渲染器
+  const renderDefault = (id) => (
+    _react2.default.createElement('div', { className: "space-y-6",}
+      , _react2.default.createElement('h1', { className: "text-3xl font-bold border-b border-gray-700 pb-4"    ,}
+        , _optionalChain([docStructure, 'access', _ => _.flatMap, 'call', _2 => _2(s => s.children), 'access', _3 => _3.find, 'call', _4 => _4(c => c.id === id), 'optionalAccess', _5 => _5.title]) || id
+      )
+      , _react2.default.createElement(Alert, { type: "info", title: "章节开发中",}, "此章节内容正在完善中，请参考其他已完成章节。"
+
+      )
+    )
+  );
+
+  return (
+    _react2.default.createElement('div', { className: "min-h-screen bg-gray-900 text-gray-100 flex"   ,}
+      /* 移动端菜单按钮 */
+      , _react2.default.createElement('button', { 
+        onClick: () => setSidebarOpen(!sidebarOpen), 
+        className: "fixed top-4 left-4 z-50 p-2 bg-gray-800 rounded-lg lg:hidden border border-gray-700 hover:bg-gray-700"          ,}
+
+        , sidebarOpen ? _react2.default.createElement(_lucidereact.X, { size: 20,} ) : _react2.default.createElement(_lucidereact.Menu, { size: 20,} )
+      )
+
+      /* 侧边栏 */
+      , _react2.default.createElement('aside', { className: `fixed lg:sticky top-0 left-0 h-screen w-80 bg-gray-800 border-r border-gray-700 transform transition-transform z-40 overflow-hidden flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`,}
+        , _react2.default.createElement('div', { className: "p-4 border-b border-gray-700"  ,}
+          , _react2.default.createElement('div', { className: "flex items-center gap-3"  ,}
+            , _react2.default.createElement('div', { className: "w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg"         ,}
+              , _react2.default.createElement(_lucidereact.Server, { size: 24, className: "text-white",} )
+            )
+            , _react2.default.createElement('div', null
+              , _react2.default.createElement('h1', { className: "font-bold text-lg" ,}, "DSCM AI Agent"  )
+              , _react2.default.createElement('div', { className: "flex items-center gap-2 text-xs text-gray-400"    ,}
+                , _react2.default.createElement('span', null, "开发文档")
+                , _react2.default.createElement('span', { className: "px-1.5 py-0.5 bg-cyan-600 rounded font-bold text-white"     ,}, "v6.4")
+              )
+            )
+          )
+        )
+
+        , _react2.default.createElement('nav', { className: "flex-1 overflow-y-auto p-3"  ,}
+          , docStructure.map(section => (
+            _react2.default.createElement('div', { key: section.id, className: "mb-2",}
+              , _react2.default.createElement('button', { 
+                onClick: () => setExpandedSections(p => ({ ...p, [section.id]: !p[section.id] })),
+                className: "w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-700/50 text-left group"         ,}
+
+                , _react2.default.createElement('div', { className: "flex items-center gap-2"  ,}
+                  , _react2.default.createElement('span', { className: "text-cyan-400",}, section.icon)
+                  , _react2.default.createElement('span', { className: "text-sm font-medium" ,}, section.title)
+                )
+                , expandedSections[section.id] ? _react2.default.createElement(_lucidereact.ChevronDown, { size: 14, className: "text-gray-400",} ) : _react2.default.createElement(_lucidereact.ChevronRight, { size: 14, className: "text-gray-400",} )
+              )
+
+              , expandedSections[section.id] && (
+                _react2.default.createElement('div', { className: "ml-6 mt-1 border-l border-gray-700 pl-3 space-y-1"     ,}
+                  , section.children.map(child => (
+                    _react2.default.createElement('button', {
+                      key: child.id,
+                      onClick: () => { setActiveSection(child.id); setSidebarOpen(false); },
+                      className: `w-full text-left px-3 py-1.5 rounded text-sm transition-colors ${
+                        activeSection === child.id 
+                          ? 'bg-cyan-600 text-white font-medium' 
+                          : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                      }`,}
+
+                      , child.title
+                    )
+                  ))
+                )
+              )
+            )
+          ))
+        )
+
+        , _react2.default.createElement('div', { className: "p-4 border-t border-gray-700 bg-gray-800/50"   ,}
+          , _react2.default.createElement('div', { className: "text-xs text-gray-500 space-y-1"  ,}
+            , _react2.default.createElement('div', { className: "flex justify-between" ,}
+              , _react2.default.createElement('span', null, "Schema Version" )
+              , _react2.default.createElement('span', { className: "text-gray-400",}, "1.2")
+            )
+            , _react2.default.createElement('div', { className: "flex justify-between" ,}
+              , _react2.default.createElement('span', null, "更新时间")
+              , _react2.default.createElement('span', { className: "text-gray-400",}, "2026-01-07")
+            )
+          )
+        )
+      )
+
+      /* 主内容区 */
+      , _react2.default.createElement('main', { className: "flex-1 min-w-0" ,}
+        , _react2.default.createElement('div', { className: "max-w-5xl mx-auto px-4 py-8 lg:px-8 lg:py-12"     ,}
+          , _optionalChain([contentMap, 'access', _6 => _6[activeSection], 'optionalCall', _7 => _7()]) || renderDefault(activeSection)
+        )
+      )
+
+      /* 移动端遮罩 */
+      , sidebarOpen && (
+        _react2.default.createElement('div', { 
+          className: "fixed inset-0 bg-black/50 z-30 lg:hidden"    , 
+          onClick: () => setSidebarOpen(false),} 
+        )
+      )
+    )
+  );
+};
+
+exports. default = DSCMDocumentation;
+</script></head>
+  <body>
+  
+
+<div id="preview-app"></div></body></html>
